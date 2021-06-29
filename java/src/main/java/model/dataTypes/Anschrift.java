@@ -1,16 +1,16 @@
+package model.dataTypes;
+
 public class Anschrift {
 
-    enum Anschrift {
-        String straße,
-        int hausnummer,
-        String zusatz,
-        int postleitzahl,
-        String ort,
-        Stirng land
-    }
+    String straße;
+    int hausnummer;
+    String zusatz;
+    int postleitzahl;
+    String ort;
+    String land;
 
     public void ueberpruefeAdresse(){
-        throw new NotImplementedException("TODO", ex);
+
     }
 
 }
