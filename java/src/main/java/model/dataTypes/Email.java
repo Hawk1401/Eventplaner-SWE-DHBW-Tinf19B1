@@ -6,6 +6,6 @@ public class Email {
     String host;
 
     public void ueberpruefeEmail(){
-        // Not Implemented
+        // TODO missing code in methode ueberpruefeEmail
     }
 }

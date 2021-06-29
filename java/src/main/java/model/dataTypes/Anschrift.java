@@ -10,7 +10,7 @@ public class Anschrift {
     String land;
 
     public void ueberpruefeAdresse(){
-
+        // TODO missing code in methode ueberpruefeAdresse
     }
 
 }

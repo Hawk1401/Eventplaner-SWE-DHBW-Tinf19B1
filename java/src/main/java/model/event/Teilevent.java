@@ -10,12 +10,12 @@ public class Teilevent extends Event{
 
     ExternBeauftragter externBeauftragter;
     Anschrift standort;
-    ArrayList<Angebot> angebotArrayList = new ArrayList<>();
+    ArrayList<Angebot> angebotslist = new ArrayList<>();
     Mitarbeiter montageLeiter;
-    ArrayList<Mitarbeiter> montagePersonalArrayList = new ArrayList<>();
+    ArrayList<Mitarbeiter> montagePersonal = new ArrayList<>();
     Mitarbeiter gruppenleiterBeschaffung;
-    ArrayList<Mitarbeiter> beschaffungsPersonalArrayList = new ArrayList<>();
-    ArrayList<Hilfsmittel> hilfsmittelArrayList = new ArrayList<>();
+    ArrayList<Mitarbeiter> beschaffungsPersonal = new ArrayList<>();
+    ArrayList<Hilfsmittel> hilfsmittel = new ArrayList<>();
 
 
     public Mitarbeiter getMontageLeiter() {
@@ -26,12 +26,12 @@ public class Teilevent extends Event{
         this.montageLeiter = montageLeiter;
     }
 
-    public ArrayList<Mitarbeiter> getMontagePersonalArrayList() {
-        return montagePersonalArrayList;
+    public ArrayList<Mitarbeiter> getMontagePersonal() {
+        return montagePersonal;
     }
 
-    public void setMontagePersonalArrayList(ArrayList<Mitarbeiter> montagePersonalArrayList) {
-        this.montagePersonalArrayList = montagePersonalArrayList;
+    public void setMontagePersonal(ArrayList<Mitarbeiter> montagePersonal) {
+        this.montagePersonal = montagePersonal;
     }
 
     public Mitarbeiter getGruppenleiterBeschaffung() {
@@ -42,20 +42,20 @@ public class Teilevent extends Event{
         this.gruppenleiterBeschaffung = gruppenleiterBeschaffung;
     }
 
-    public ArrayList<Mitarbeiter> getBeschaffungsPersonalArrayList() {
-        return beschaffungsPersonalArrayList;
+    public ArrayList<Mitarbeiter> getBeschaffungsPersonal() {
+        return beschaffungsPersonal;
     }
 
-    public void setBeschaffungsPersonalArrayList(ArrayList<Mitarbeiter> beschaffungsPersonalArrayList) {
-        this.beschaffungsPersonalArrayList = beschaffungsPersonalArrayList;
+    public void setBeschaffungsPersonal(ArrayList<Mitarbeiter> beschaffungsPersonal) {
+        this.beschaffungsPersonal = beschaffungsPersonal;
     }
 
-    public ArrayList<Hilfsmittel> getHilfsmittelArrayList() {
-        return hilfsmittelArrayList;
+    public ArrayList<Hilfsmittel> getHilfsmittel() {
+        return hilfsmittel;
     }
 
-    public void setHilfsmittelArrayList(ArrayList<Hilfsmittel> hilfsmittelArrayList) {
-        this.hilfsmittelArrayList = hilfsmittelArrayList;
+    public void setHilfsmittel(ArrayList<Hilfsmittel> hilfsmittel) {
+        this.hilfsmittel = hilfsmittel;
     }
 
     public ExternBeauftragter getExternBeauftragter() {
@@ -74,11 +74,11 @@ public class Teilevent extends Event{
         this.standort = standort;
     }
 
-    public ArrayList<Angebot> getAngebotArrayList() {
-        return angebotArrayList;
+    public ArrayList<Angebot> getAngebotslist() {
+        return angebotslist;
     }
 
-    public void setAngebotArrayList(ArrayList<Angebot> angebotArrayList) {
-        this.angebotArrayList = angebotArrayList;
+    public void setAngebotslist(ArrayList<Angebot> angebotslist) {
+        this.angebotslist = angebotslist;
     }
 }

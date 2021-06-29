@@ -7,7 +7,7 @@ public class Telefonnummer {
     int nummer;
 
     public void ueberpruefeTelefonnummer(){
-
+        // TODO missing code in methode ueberpruefeTelefonnummer
     }
 
 }
