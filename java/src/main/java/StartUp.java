@@ -3,5 +3,7 @@ public class StartUp {
         // init data
 
         // init Gui
+        GUIController controller =  GUIController.getGuiController();
+
     }
 }
