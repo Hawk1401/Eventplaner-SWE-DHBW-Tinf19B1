@@ -1,0 +1,13 @@
+package com.model.dataTypes;
+
+public enum Rolle {
+
+    ADMINISTRATOR,
+    PERSONALMITARBEITER,
+    MONTAGELEITER,
+    GRUPPENLEITER,
+    BESCHAFFUNGSPERSONAL,
+    ORGANISATOR,
+    MITARBEITER
+
+}
