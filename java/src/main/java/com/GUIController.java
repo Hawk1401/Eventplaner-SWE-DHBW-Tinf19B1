@@ -39,32 +39,31 @@ public class GUIController {
     public JPanel topbar(){
         JPanel top = new JPanel();
 
-        ButtonElement buttonNeuesHauptevent = ButtonElement.builder("BTN-neuesHauptevent")
+        ButtonElement[] btns = new ButtonElement[]{
+                ButtonElement.builder("BTN-neuesHauptevent")
                 .buttonText("neues Hauptevent erstellen")
                 .type(ButtonElement.Type.BUTTON)
-                .build();
-        ButtonElement buttonNeuesTeilevent = ButtonElement.builder("BTN-neuesTeilevent")
+                .build(),
+        ButtonElement.builder("BTN-neuesTeilevent")
                 .buttonText("neues Teilevent erstellen")
                 .type(ButtonElement.Type.BUTTON)
-                .build();
-        ButtonElement buttonHilfsmittelBearbeiten = ButtonElement.builder("BTN-HilfsmittelBearbeiten")
+                .build(),
+        ButtonElement.builder("BTN-HilfsmittelBearbeiten")
                 .buttonText("Hilfsmittel bearbeiten")
                 .type(ButtonElement.Type.BUTTON)
-                .build();
-        ButtonElement buttonKundeBearbeiten = ButtonElement.builder("BTN-KundeBearbeiten")
+                .build(),
+        ButtonElement.builder("BTN-KundeBearbeiten")
                 .buttonText("Kunde bearbeiten")
                 .type(ButtonElement.Type.BUTTON)
-                .build();
-        ButtonElement buttonMitarbeiterBearbeiten = ButtonElement.builder("BTN-MitarbeiterBearbeiten")
+                .build(),
+        ButtonElement.builder("BTN-MitarbeiterBearbeiten")
                 .buttonText("Mitarbeiter bearbeiten")
                 .type(ButtonElement.Type.BUTTON)
-                .build();
+                .build()
+        };
 
-        top.add(buttonNeuesHauptevent);
-        top.add(buttonNeuesTeilevent);
-        top.add(buttonHilfsmittelBearbeiten);
-        top.add(buttonKundeBearbeiten);
-        top.add(buttonMitarbeiterBearbeiten);
+        ButtonComponent topBarButtons = ButtonComponent.builder("").buttonElements(btns).position(ButtonComponent.Position.NORTH).build();
+        top.add(topBarButtons);
 
         return top;
     }

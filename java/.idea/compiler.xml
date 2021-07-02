@@ -16,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="-XDignore.symbol.file" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Eventplaner" options="" />
+      <module name="java" options="" />
     </option>
   </component>
 </project>
