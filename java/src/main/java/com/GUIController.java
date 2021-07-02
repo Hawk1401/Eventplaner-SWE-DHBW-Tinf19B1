@@ -28,6 +28,12 @@ public class GUIController {
 
         frame.add(topbar(), BorderLayout.NORTH);
 
+
+        //temp
+        GUISuche guiSuche = new GUISuche();
+        frame.add(guiSuche.getAttributeComponent(), BorderLayout.SOUTH);
+        //temp
+
         frame.repaint();
     }
 
@@ -39,7 +45,6 @@ public class GUIController {
         JPanel top = new JPanel();
 
         ButtonElement[] btns = new ButtonElement[]{
-
                 ButtonElement.builder("BTN-neuesHauptevent")
                 .buttonText("neues Hauptevent erstellen")
                 .type(ButtonElement.Type.BUTTON)
@@ -62,15 +67,12 @@ public class GUIController {
                 .build()
         };
 
-        ButtonComponent topBarButtons = ButtonComponent.builder("buttontopbar")
-                .buttonElements(btns)
-                .buttonSize(new Dimension(200,40))
-                .position(ButtonComponent.Position.NORTH)
-                .build();
+        ButtonComponent topBarButtons = ButtonComponent.builder("").buttonElements(btns).position(ButtonComponent.Position.NORTH).build();
         top.add(topBarButtons);
 
         return top;
     }
+
 
 
 
