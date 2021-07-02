@@ -31,8 +31,8 @@ public class GUIController {
 
 
         //temp
-        GUISuche guiSuche = new GUISuche();
-        frame.add(guiSuche.getAttributeComponent(), BorderLayout.SOUTH);
+        GUIOverview ov = new GUIOverview();
+        frame.add(ov.getOverviewPanel(), BorderLayout.NORTH);
         //temp
 
         frame.repaint();

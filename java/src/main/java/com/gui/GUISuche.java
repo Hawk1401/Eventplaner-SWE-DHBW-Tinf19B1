@@ -36,7 +36,7 @@ public class GUISuche extends GUIComponent {
         attributeComponent = AttributeComponent
                 .builder("attComp")
                 .attributeElements(elements)
-                .title("Title")
+                .title("Filter")
                 .build();
     }
 
