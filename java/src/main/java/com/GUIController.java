@@ -1,5 +1,6 @@
 package com;
 
+import com.gui.GUIOverview;
 import com.gui.GUISuche;
 import de.dhbwka.swe.utils.gui.AttributeComponent;
 import de.dhbwka.swe.utils.gui.AttributeElement;
