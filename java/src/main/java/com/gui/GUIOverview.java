@@ -15,8 +15,8 @@ public class GUIOverview extends GUIComponent{
         panel.setLayout(new BorderLayout());
 
         GUIEventlist guiEventlist = new GUIEventlist();
-        panel.add(guiSuche.getAttributeComponent(), BorderLayout.SOUTH);
-        panel.add(guiEventlist.getTable(), BorderLayout.NORTH);
+        panel.add(guiSuche.getAttributeComponent(), BorderLayout.NORTH);
+        panel.add(guiEventlist.getTable(), BorderLayout.SOUTH);
 
     }
 

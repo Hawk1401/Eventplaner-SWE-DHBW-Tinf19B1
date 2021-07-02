@@ -32,7 +32,7 @@ public class GUIController {
 
         //temp
         GUIOverview ov = new GUIOverview();
-        frame.add(ov.getOverviewPanel(), BorderLayout.NORTH);
+        frame.add(ov.getOverviewPanel(), BorderLayout.SOUTH);
         //temp
 
         frame.repaint();
@@ -78,11 +78,6 @@ public class GUIController {
 
         return top;
     }
-
-
-
-
-
 
 
 

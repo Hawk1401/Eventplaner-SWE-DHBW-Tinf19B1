@@ -61,6 +61,7 @@ com/GUIController.class
 com/model/person/Mitarbeiter.class
 com/gui/GUISuche.class
 com/event/HaupteventObserver.class
+com/gui/GUIEventlist$tableclass.class
 com/model/event/Location.class
 com/model/dataTypes/Rolle.class
 com/databaseInterface/Export.class
