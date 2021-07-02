@@ -67,7 +67,12 @@ public class GUIController {
                 .build()
         };
 
-        ButtonComponent topBarButtons = ButtonComponent.builder("").buttonElements(btns).position(ButtonComponent.Position.NORTH).build();
+        ButtonComponent topBarButtons = ButtonComponent
+                .builder("ComponentTopbar")
+                .buttonElements(btns)
+                .buttonSize(new Dimension(200,40))
+                .position(ButtonComponent.Position.NORTH)
+                .build();
         top.add(topBarButtons);
 
         return top;
