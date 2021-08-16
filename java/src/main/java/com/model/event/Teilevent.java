@@ -1,5 +1,8 @@
 package com.model.event;
 
+import com.model.dataTypes.Datum;
+import com.model.dataTypes.Status;
+import com.model.dataTypes.Weahrung;
 import com.model.dataTypes.Anschrift;
 import com.model.person.ExternBeauftragter;
 import com.model.person.Mitarbeiter;
@@ -17,6 +20,26 @@ public class Teilevent extends Event{
     ArrayList<Mitarbeiter> beschaffungsPersonal = new ArrayList<>();
     ArrayList<Hilfsmittel> hilfsmittel = new ArrayList<>();
 
+    public Teilevent(String bezeichnung, Datum start_Termin, Datum end_Termin,
+        String beschreibung, Status status, double kosten, Weahrung weahrung,
+        int teilnehmner, ArrayList<Bild> bilder, ExternBeauftragter externBeauftragter,
+        Anschrift standort, ArrayList<Angebot> angebotslist, Mitarbeiter montageLeiter,
+        ArrayList<Mitarbeiter> montagePersonal, Mitarbeiter gruppenleiterBeschaffung,
+        ArrayList<Mitarbeiter> beschaffungsPersonal, ArrayList<Hilfsmittel> hilfsmittel){
+
+        super(bezeichnung, start_Termin, end_Termin,
+                      beschreibung, status, kosten, weahrung,
+                      teilnehmner, bilder);
+
+        this.externBeauftragter = externBeauftragter;
+        this.standort = standort;
+        this.angebotslist = angebotslist;
+        this.montageLeiter = montageLeiter;
+        this.montagePersonal = montagePersonal;
+        this.gruppenleiterBeschaffung = gruppenleiterBeschaffung;
+        this.beschaffungsPersonal = beschaffungsPersonal;
+        this.hilfsmittel = hilfsmittel;
+    }
 
     public Mitarbeiter getMontageLeiter() {
         return montageLeiter;

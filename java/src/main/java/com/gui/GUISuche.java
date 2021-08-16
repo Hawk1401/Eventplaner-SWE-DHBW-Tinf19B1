@@ -21,14 +21,10 @@ public class GUISuche extends GUIComponent {
         AttributeElement[] elements = new AttributeElement[]{
             AttributeElement.builder("MitarbeiterLabel")
                     .labelName("Mitarbeiter")
+                    .actionType(AttributeElement.ActionType.COMBOBOX)
                     .build(),
-                    AttributeElement.builder("MitarbeiterCombobox")
-                            .actionType(AttributeElement.ActionType.COMBOBOX)
-                            .build(),
                     AttributeElement.builder("StatusLabel")
                             .labelName("Status")
-                            .build(),
-                    AttributeElement.builder("StatusCombobox")
                             .actionType(AttributeElement.ActionType.COMBOBOX)
                             .build()
         };
@@ -39,6 +35,4 @@ public class GUISuche extends GUIComponent {
                 .title("Title")
                 .build();
     }
-
-
 }

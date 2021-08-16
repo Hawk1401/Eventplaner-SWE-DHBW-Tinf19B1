@@ -17,10 +17,9 @@ public class GUIEventlist extends GUIComponent{
 
     public GUIEventlist() {
         IDepictable[] elems = new IDepictable[]{
-                new tableclass("michi", 52),
-                new tableclass("alex", 21)
-        };
-
+                                new tableclass("michi", 52),
+                                new tableclass("alex", 21)
+                        };
         table = SimpleTableComponent.builder("tableEvents").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"name", "age"}).build();
 
         table.setData(elems, new String[]{"name", "age"});
@@ -29,43 +28,43 @@ public class GUIEventlist extends GUIComponent{
     public SimpleTableComponent getTable(){return table;}
 
     //temp
-    public class tableclass implements IDepictable{
-
-        String name;
-        int age;
-
-        public tableclass(String name, int age){
-            this.name = name;
-            this.age = age;
-        }
-        @Override
-        public String getElementID() {
-            return this.name;
-        }
-
-        @Override
-        public Attribute[] getAttributeArray() {
-            return new Attribute[] { new Attribute("name",
-                    this.name,
-                    String.class,
-                    this.name,
-                    "name",
-                    true,
-                    true,
-                    true
-            ),
-                    new Attribute("age",
-                            this.age,
-                            int.class,
-                            this.age,
-                            "age",
-                            true,
-                            true,
-                            true
-                    )};
-        }
-
-        //Attribute(String name, Object dedicatedInstance, Class<?> clazz, Object value, Object defaultValue, boolean visible, boolean modifiable, boolean editable)
-    }
+    public class tableclass implements IDepictable {
+           
+                       String name;
+                       int age;
+           
+                       public tableclass(String name, int age){
+                           this.name = name;
+                           this.age = age;
+                       }
+                       @Override
+                       public String getElementID() {
+                           return this.name;
+                       }
+           
+                       @Override
+                       public Attribute[] getAttributeArray() {
+                           return new Attribute[] { new Attribute("name",
+                                   this.name,
+                                   String.class,
+                                   this.name,
+                                   "name",
+                                   true,
+                                   true,
+                                   true
+                           ),
+                                   new Attribute("age",
+                                           this.age,
+                                           int.class,
+                                           this.age,
+                                           "age",
+                                           true,
+                                           true,
+                                           true
+                                   )};
+                       }
+           
+                       //Attribute(String name, Object dedicatedInstance, Class<?> clazz, Object value, Object defaultValue, boolean visible, boolean modifiable, boolean editable)
+                   }
     //temp
 }
