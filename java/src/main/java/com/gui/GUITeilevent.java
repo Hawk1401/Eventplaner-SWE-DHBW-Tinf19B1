@@ -1,18 +1,81 @@
 package com.gui;
 
+import com.model.event.Hilfsmittel;
+import com.model.person.*;
+import com.model.event.Teilevent;
 import de.dhbwka.swe.utils.gui.*;
 import de.dhbwka.swe.utils.gui.TextComponent;
 import de.dhbwka.swe.utils.model.Attribute;
 import de.dhbwka.swe.utils.model.IDepictable;
+import de.dhbwka.swe.utils.event.GUIEvent;
+import de.dhbwka.swe.utils.event.IGUIEventListener;
+import org.javatuples.Pair;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class GUITeilevent extends GUIComponent{
+public class GUITeilevent extends GUIComponent implements IGUIEventListener{
     private JPanel jp = new JPanel();
     public JPanel getOverviewPanel(){return  jp;}
+    private Teilevent _teilevent;
+
+
+
+    TextComponent textFieldTeileventName;
+    TextComponent textFieldHaupteventName;
+    TextComponent textFieldStartDatum;
+    TextComponent textFieldEndDatum;
+    AttributeElement EventStatusComboboxElement;
+    ButtonElement[] EventKundeButtonElement;
+    JTextArea extendetTextFieldBeschreibung;
+    SimpleTableComponent tableMitarbeiter;
+    SimpleTableComponent tableHilfsmittel;
+    TextComponent textFieldKosten;
+    private ButtonComponent KundeButtonComponent;
+
+    public GUITeilevent(Teilevent teilevent){
+        this._teilevent = teilevent;
+
+        String name =  _teilevent.getBezeichnung();
+        String HauptEventName = _teilevent.getHauptevent().getBezeichnung();
+        String StartDatum = _teilevent.getStart_Termin().getDatum();
+        String EndDatum = _teilevent.getEnd_Termin().getDatum();
+        String status = _teilevent.getStatus().toString();
+        String beschreibung = _teilevent.getBeschreibung();
+        String kosten = Double.toString(_teilevent.getKosten());
+
+        ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittels = _teilevent.getHilfsmittel();
+
+        IDepictable[] elemsHilfsmittel = new IDepictable[hilfsmittels.size()];
+        for (int i = 0; i < elemsHilfsmittel.length ; i++) {
+            Hilfsmittel hilfsmittel = hilfsmittels.get(i).getValue0();
+            elemsHilfsmittel[i] = new tableclass3(hilfsmittel.getBezeichnung(), hilfsmittel.getBeschreibung(), Integer.toString(hilfsmittels.get(i).getValue1()));
+        }
+
+        ArrayList<Mitarbeiter> mitarbeiters = _teilevent.getBeschaffungsPersonal();
+        mitarbeiters.addAll(_teilevent.getMontagePersonal());
+        mitarbeiters.add(_teilevent.getMontageLeiter());
+        mitarbeiters.add(_teilevent.getGruppenleiterBeschaffung());
+
+        IDepictable[] elemsMitarbeiter = new IDepictable[mitarbeiters.size()];
+        for (int i = 0; i < elemsMitarbeiter.length ; i++) {
+            Mitarbeiter mitarbeiter = mitarbeiters.get(i);
+            elemsMitarbeiter[i] = new tableclass2(mitarbeiter.getKontaktdaten().getEmail().getGesamteEmail());
+        }
+        BuildUI(name, HauptEventName, StartDatum, EndDatum, status, beschreibung, kosten,elemsHilfsmittel ,elemsMitarbeiter);
+
+    }
 
     public GUITeilevent(){
+        
+        
+        
+        BuildUI("", "", "", "", "", "", "", new tableclass3[0] , new tableclass2[0]);
+    }
+
+
+    public void BuildUI(String name, String HauptEventName, String StartDatum, String EndDatum, String status, String beschreibung, String kosten, IDepictable[] elemsHilfsmittel, IDepictable[] elemsMitarbeiter){
         GridBagLayout gbl = new GridBagLayout();
         jp.setLayout(gbl);
 
@@ -30,7 +93,7 @@ public class GUITeilevent extends GUIComponent{
         gbl.setConstraints(labelEventName, gbc);
         jp.add(labelEventName);
 
-        TextComponent textFieldTeileventName = TextComponent.builder("t").initialText("Drunking sailer").build();
+        textFieldTeileventName = TextComponent.builder("t").initialText(name).editable(false).build();
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -47,7 +110,7 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelHaupteventName);
 
 
-        TextComponent textFieldHaupteventName = TextComponent.builder("HaupteventTextField").initialText("Test Hauptevent").build();
+        textFieldHaupteventName = TextComponent.builder("HaupteventTextField").initialText(HauptEventName).editable(false).build();
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -65,7 +128,7 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelDatum);
 
 
-        TextComponent textFieldStartDatum = TextComponent.builder("textFieldStartDatum").initialText("Datum 1").build();
+        textFieldStartDatum = TextComponent.builder("textFieldStartDatum").initialText(StartDatum).editable(false).build();
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
@@ -74,7 +137,7 @@ public class GUITeilevent extends GUIComponent{
         jp.add(textFieldStartDatum);
 
 
-        TextComponent textFieldEndDatum = TextComponent.builder("textFieldEndDatum").initialText("Datum 2").build();
+        textFieldEndDatum = TextComponent.builder("textFieldEndDatum").initialText(EndDatum).editable(false).build();
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.gridwidth = 1;
@@ -92,18 +155,16 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelStatus);
 
 
-        AttributeElement EventStatusComboboxElement = AttributeElement.builder("EventStatusComboboxElement")
-                .labelName(" ")
-                .actionType(AttributeElement.ActionType.COMBOBOX)
-                .build();
+        TextComponent textFieldStatus = TextComponent.builder("textFieldStatus").initialText(status).editable(false).build();
+
 
 
         gbc.gridx = 1;
         gbc.gridy = 4;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbl.setConstraints(EventStatusComboboxElement, gbc);
-        jp.add(EventStatusComboboxElement);
+        gbl.setConstraints(textFieldStatus, gbc);
+        jp.add(textFieldStatus);
 
 
         gbc.gridx = 0;
@@ -115,17 +176,28 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelKunde);
 
 
-        ButtonElement EventKundeButtonElement = ButtonElement.builder("EventKundeButtonElement")
-                .buttonText("Kunden info")
+        EventKundeButtonElement = new ButtonElement[]{ ButtonElement.builder("KundeButtonElement")
+                .buttonText("Kunde")
                 .type(ButtonElement.Type.BUTTON)
+                .build()};
+
+        KundeButtonComponent = ButtonComponent
+                .builder("KundeButtonComponent")
+                .buttonElements(EventKundeButtonElement)
+                .buttonSize(new Dimension(200,40))
+                .position(ButtonComponent.Position.NORTH)
                 .build();
+
+
+        KundeButtonComponent.addObserver(this);
+
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 
-        gbl.setConstraints(EventKundeButtonElement, gbc);
-        jp.add(EventKundeButtonElement);
+        gbl.setConstraints(KundeButtonComponent, gbc);
+        jp.add(KundeButtonComponent);
 
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -137,8 +209,8 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelBeschreibung);
 
 
-        JTextArea extendetTextFieldBeschreibung = new JTextArea();
-        extendetTextFieldBeschreibung.setText(System.lineSeparator()+ " Some text"+ System.lineSeparator());
+        extendetTextFieldBeschreibung = new JTextArea();
+        extendetTextFieldBeschreibung.setText(beschreibung);
         JScrollPane scrollPane = new JScrollPane(extendetTextFieldBeschreibung);
 
         gbc.gridx = 1;
@@ -160,14 +232,11 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelMitarbeiter);
 
 
-        SimpleTableComponent tableMitarbeiter = SimpleTableComponent.builder("tableMitarbeiter").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"eMail"}).build();
+        tableMitarbeiter = SimpleTableComponent.builder("tableMitarbeiter").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"eMail"}).build();
 
-        IDepictable[] elems = new IDepictable[]{
-                        new tableclass2("michi@web.de"),
-                        new tableclass2("alex@test.com")
-                };
 
-        tableMitarbeiter.setData(elems, new String[]{"eMail"});
+
+        tableMitarbeiter.setData(elemsMitarbeiter, new String[]{"eMail"});
 
 
         gbc.gridx = 1;
@@ -189,14 +258,13 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelHilfsmittel);
 
 
-        SimpleTableComponent tableHilfsmittel = SimpleTableComponent.builder("tableHilfsmittel").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"Name", "Beschreibung", "Anzahl"}).build();
 
-        IDepictable[] elemsHilfsmittel = new IDepictable[]{
-                        new tableclass3("Stuhl", "modern", "5"),
-                        new tableclass3("Tisch", "Größe: 6, altmodisch", "2")
-                };
+        tableHilfsmittel = SimpleTableComponent.builder("tableHilfsmittel").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"Name", "Beschreibung", "Anzahl"}).build();
 
-        //tableHilfsmittel.setData(elemsHilfsmittel, new String[]{"Name", "Beschreibung", "Anzahl"});
+
+
+
+        tableHilfsmittel.setData(elemsHilfsmittel, new String[]{"Name", "Beschreibung", "Anzahl"});
         gbc.gridx = 1;
         gbc.gridy = 12;
         gbc.gridwidth = 1;
@@ -216,7 +284,7 @@ public class GUITeilevent extends GUIComponent{
         jp.add(labelKosten);
 
 
-        TextComponent textFieldKosten = TextComponent.builder("textFieldKosten").initialText("4000").build();
+        textFieldKosten = TextComponent.builder("textFieldKosten").initialText(kosten).build();
         gbc.gridx = 1;
         gbc.gridy = 15;
         gbc.gridwidth = 1;
@@ -236,6 +304,17 @@ public class GUITeilevent extends GUIComponent{
 
         gbl.setConstraints(btnBerabeiten, gbc);
         jp.add(btnBerabeiten);
+    }
+    @Override
+    public void processGUIEvent(GUIEvent ge) {
+        if (ge.getCmd().equals(ButtonComponent.Commands.BUTTON_PRESSED)) {
+            if (((ButtonElement) ge.getData()).getID().equals("KundeButtonElement")) {
+                JFrame frameKunde = new JFrame();
+                Kunde kunde = _teilevent.getHauptevent().getVertrag().getKunde();
+                frameKunde.add(new GUIKunde(frameKunde, kunde));
+                frameKunde.show();
+            }
+        }
     }
 
 

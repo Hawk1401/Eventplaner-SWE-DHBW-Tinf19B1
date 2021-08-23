@@ -1,34 +1,52 @@
 package com.model.dataTypes;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Datum {
 
     long timestamp;
-
-    public void getTimestamp(){
-        // TODO missing code in methode getTimestamp
+    Timestamp ts;
+     public Datum(long timestamp){
+        this.timestamp = timestamp;
+         ts = new Timestamp(timestamp);
     }
 
-    public void getDatum(){
-        // TODO missing code in methode getDatum
+    public Datum(String Date){
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        try {
+            ts = new Timestamp(((java.util.Date)df.parse(Date)).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getTag(){
-        // TODO missing code in methode getTag
+    public Datum(){
+        this(System.currentTimeMillis());
+    }
+    public long getTimestamp(){
+        return timestamp;
     }
 
-    public void getMonat(){
-        // TODO missing code in methode getMonat
+    public String getDatum(){
+        String s = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(ts);
+        return s;
     }
 
-    public void getJahr(){
-        // TODO missing code in methode getJahr
+    public String getTag(){
+        String s = new SimpleDateFormat("dd").format(ts);
+        return s;
     }
 
-    public void isSchaltjahr(){
-        // TODO missing code in methode isSchaltjahr
+    public String getMonat(){
+        String s = new SimpleDateFormat("MM").format(ts);
+        return s;
     }
 
-    public void ueberpruefeDatum(){
-        // TODO missing code in methode ueberpruefeDatum
+    public String getJahr(){
+        String s = new SimpleDateFormat("yyyy").format(ts);
+        return s;
     }
 }

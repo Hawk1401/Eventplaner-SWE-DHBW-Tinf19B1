@@ -1,9 +1,9 @@
 package com;
 
-import com.gui.GUIOverview;
-import com.gui.GUISuche;
-import com.gui.GUITeilEventBearbeiten;
-import com.gui.GUITeilevent;
+import com.databaseInterface.Eventverwaltung;
+import com.gui.*;
+import com.model.event.Hauptevent;
+import com.model.event.Teilevent;
 import de.dhbwka.swe.utils.event.GUIEvent;
 import de.dhbwka.swe.utils.event.IGUIEventListener;
 import de.dhbwka.swe.utils.gui.*;
@@ -12,15 +12,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.List;
 
 public class GUIController implements IGUIEventListener {
 
     private static final GUIController guiController = new GUIController();
     private ButtonElement[] btns;
+    JFrame frame;
+    JPanel Center;
+    GUIOverview ov;
     private GUIController(){
         // constructor is private -> no access from outside, no new object -> singleton
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         frame.add(mainPanel);
@@ -36,17 +41,18 @@ public class GUIController implements IGUIEventListener {
 
         mainPanel.add(topbar());
 
-        JPanel Center = new JPanel();
+        Center = new JPanel();
         Center.setLayout(new BoxLayout(Center, BoxLayout.X_AXIS));
         mainPanel.add(Center);
+
         //temp
-        GUIOverview ov = new GUIOverview();
+        ov = new GUIOverview(this);
         Center.add(ov.getOverviewPanel());
         //temp
 
 
-        GUITeilevent teilevent = new GUITeilevent();
-        Center.add(teilevent.getOverviewPanel());
+        GUIHauptevent HauptEvent = new GUIHauptevent();
+        Center.add(HauptEvent.getOverviewPanel());
         //frame.add(new Button("test"), BorderLayout.CENTER);
 
         frame.pack();
@@ -103,14 +109,19 @@ public class GUIController implements IGUIEventListener {
 
         if (ge.getCmd().equals(ButtonComponent.Commands.BUTTON_PRESSED)) {
             if (((ButtonElement) ge.getData()).getID().equals("BTN-neuesHauptevent")) {
-
+                JFrame frame = new JFrame();
+                GUIHaupteventBearbeiten guiHaupteventBearbeiten = new GUIHaupteventBearbeiten(frame, new Hauptevent());
+                frame.add(guiHaupteventBearbeiten.getOverviewPanel());
+                frame.pack();
+                frame.setMinimumSize(new Dimension(800,    600));
+                frame.setVisible(true);
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-neuesTeilevent")) {
                 JFrame frame = new JFrame();
-                GUITeilEventBearbeiten guiTeileventBearbeiten = new GUITeilEventBearbeiten();
+                GUITeilEventBearbeiten guiTeileventBearbeiten = new GUITeilEventBearbeiten(new Teilevent(), frame);
                 frame.add(guiTeileventBearbeiten.getOverviewPanel());
                 frame.pack();
-                frame.setMinimumSize(new Dimension(1000,    600));
+                frame.setMinimumSize(new Dimension(800,    600));
                 frame.setVisible(true);
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-HilfsmittelBearbeiten")) {
@@ -121,6 +132,20 @@ public class GUIController implements IGUIEventListener {
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-MitarbeiterBearbeiten")) {
 
+            }
+        }
+
+        if(ge.getCmd().equals(SimpleTableComponent.Commands.MULTIPLE_ROWS_SELECTED)){
+            String t = ((List<GUIEventlist.tableclass>)ge.getData()).get(0).getName();
+
+            ArrayList<Hauptevent> hauptEvents = Eventverwaltung.getEventverwaltung().getListeHauptevent();
+            for (int i = 0; i < hauptEvents.size(); i++) {
+                if(hauptEvents.get(i).getBezeichnung() == t){
+                    GUIHauptevent HauptEvent = new GUIHauptevent(hauptEvents.get(i));
+                    Center.remove(1);
+                    Center.add(HauptEvent.getOverviewPanel());
+                    frame.pack();
+                }
             }
         }
     }

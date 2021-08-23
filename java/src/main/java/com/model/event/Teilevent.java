@@ -8,6 +8,7 @@ import com.model.person.ExternBeauftragter;
 import com.model.person.Mitarbeiter;
 
 import java.util.ArrayList;
+import org.javatuples.Pair;
 
 public class Teilevent extends Event{
 
@@ -18,18 +19,30 @@ public class Teilevent extends Event{
     ArrayList<Mitarbeiter> montagePersonal = new ArrayList<>();
     Mitarbeiter gruppenleiterBeschaffung;
     ArrayList<Mitarbeiter> beschaffungsPersonal = new ArrayList<>();
-    ArrayList<Hilfsmittel> hilfsmittel = new ArrayList<>();
+    ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl = new ArrayList<Pair<Hilfsmittel, Integer>>();
+    Hauptevent hauptevent;
 
-    public Teilevent(String bezeichnung, Datum start_Termin, Datum end_Termin,
-        String beschreibung, Status status, double kosten, Weahrung weahrung,
-        int teilnehmner, ArrayList<Bild> bilder, ExternBeauftragter externBeauftragter,
-        Anschrift standort, ArrayList<Angebot> angebotslist, Mitarbeiter montageLeiter,
-        ArrayList<Mitarbeiter> montagePersonal, Mitarbeiter gruppenleiterBeschaffung,
-        ArrayList<Mitarbeiter> beschaffungsPersonal, ArrayList<Hilfsmittel> hilfsmittel){
+    public Teilevent(String bezeichnung,
+                     Datum start_Termin,
+                     Datum end_Termin,
+                     String beschreibung,
+                     Status status,
+                     double kosten,
+                     int teilnehmner,
+                     ArrayList<Bild> bilder,
+                     ExternBeauftragter externBeauftragter,
+                     Anschrift standort,
+                     ArrayList<Angebot> angebotslist,
+                     Mitarbeiter montageLeiter,
+                     ArrayList<Mitarbeiter> montagePersonal,
+                     Mitarbeiter gruppenleiterBeschaffung,
+                     ArrayList<Mitarbeiter> beschaffungsPersonal,
+                     ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl,
+                     Hauptevent hauptevent){
 
         super(bezeichnung, start_Termin, end_Termin,
-                      beschreibung, status, kosten, weahrung,
-                      teilnehmner, bilder);
+                beschreibung, status, kosten,
+                teilnehmner, bilder);
 
         this.externBeauftragter = externBeauftragter;
         this.standort = standort;
@@ -38,7 +51,24 @@ public class Teilevent extends Event{
         this.montagePersonal = montagePersonal;
         this.gruppenleiterBeschaffung = gruppenleiterBeschaffung;
         this.beschaffungsPersonal = beschaffungsPersonal;
-        this.hilfsmittel = hilfsmittel;
+        this.hilfsmittelMitAnzahl = hilfsmittelMitAnzahl;
+        this.hauptevent = hauptevent;
+    }
+
+    public Teilevent() {
+        super("", new Datum(), new Datum(),
+                "", Status.ERSTELLT, 0,
+                0, new ArrayList<>());
+
+        this.externBeauftragter = new ExternBeauftragter("");
+        this.standort = new Anschrift("");
+        this.angebotslist = new ArrayList<>();
+        this.montageLeiter = new Mitarbeiter("");
+        this.montagePersonal = new ArrayList<>();
+        this.gruppenleiterBeschaffung = new Mitarbeiter("");
+        this.beschaffungsPersonal = new ArrayList<>();
+        this.hilfsmittelMitAnzahl = new ArrayList<>();
+        this.hauptevent = new Hauptevent();
     }
 
     public Mitarbeiter getMontageLeiter() {
@@ -73,12 +103,12 @@ public class Teilevent extends Event{
         this.beschaffungsPersonal = beschaffungsPersonal;
     }
 
-    public ArrayList<Hilfsmittel> getHilfsmittel() {
-        return hilfsmittel;
+    public ArrayList<Pair<Hilfsmittel, Integer>> getHilfsmittel() {
+        return hilfsmittelMitAnzahl;
     }
 
-    public void setHilfsmittel(ArrayList<Hilfsmittel> hilfsmittel) {
-        this.hilfsmittel = hilfsmittel;
+    public void setHilfsmittel(ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl) {
+        this.hilfsmittelMitAnzahl = hilfsmittelMitAnzahl;
     }
 
     public ExternBeauftragter getExternBeauftragter() {
@@ -103,5 +133,13 @@ public class Teilevent extends Event{
 
     public void setAngebotslist(ArrayList<Angebot> angebotslist) {
         this.angebotslist = angebotslist;
+    }
+
+    public Hauptevent getHauptevent(){
+        return this.hauptevent;
+    }
+
+    public void setHauptevent(Hauptevent hauptevent){
+        this.hauptevent = hauptevent;
     }
 }

@@ -1,5 +1,7 @@
 package com.model.dataTypes;
 
+import java.util.Arrays;
+
 public enum Status {
 
     ERSTELLT,
@@ -7,6 +9,10 @@ public enum Status {
     IN_ARBEIT,
     MONTAGE_BEREIT,
     FERTIG,
-    ABGESCHLOSSEN
+    ABGESCHLOSSEN;
+
+    public static String[] getNames(Class<? extends Enum<?>> e) {
+        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+    }
 
 }
