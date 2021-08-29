@@ -4,11 +4,14 @@ package com;
 import static com.GUIController.getGuiController;
 
 import com.databaseInterface.Eventverwaltung;
+import com.databaseInterface.JSONExport;
+import com.databaseInterface.JSONImport;
 import com.model.event.*;
 import com.model.dataTypes.*;
 import com.model.person.*;
 import com.model.Vertrag;
 import org.javatuples.Pair;
+import org.javatuples.Quartet;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class StartUp {
         ArrayList<Mitarbeiter> testMitarbeiter = new ArrayList<Mitarbeiter>();
         testMitarbeiter.add(new Mitarbeiter("Hans", "König", "hans.koenig@web.de", 495826984825L, "hiner den lienden 24", 1, Rolle.MITARBEITER, new ArrayList<>(), new Datum(), "Berlin"));
         testMitarbeiter.add(new Mitarbeiter("Hans1", "König1", "hans1.koenig@web.de", 495826984525L, "hiner den lienden 25", 4, Rolle.BESCHAFFUNGSPERSONAL, new ArrayList<>(), new Datum(), "Berlin"));
-        testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.BESCHAFFUNGSPERSONAL, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "Berlin"));
         testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.MONTAGELEITER, new ArrayList<>(), new Datum(), "Berlin"));
         testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.ORGANISATOR, new ArrayList<>(), new Datum(), "Berlin"));
 
@@ -63,11 +66,48 @@ public class StartUp {
             new Datum("13.04.1990 12:33"),
             new Datum("13.04.1991 23:33"));
 
+
+        Hauptevent testHauptevent2 = new Hauptevent("Hauptevent Name die zweite",
+                new Mitarbeiter("John", "Smith", "info@Smith.com",
+                        012234, "Soll die Adresse sein ist aber noch ein String",
+                        01, Rolle.ORGANISATOR, new ArrayList<Aufgabenfeld>(), new Datum("13.04.1990 12:33"),
+                        "Bielefeld"),
+                new Vertrag(),
+                testTeilevents,
+                20000.99,
+                100,
+                "Das ist die Beschreibung",
+                Status.ERSTELLT,
+                new ArrayList<Bild>(),
+                new Datum("13.04.1992 12:33"),
+                new Datum("13.04.1993 23:33"));
+
         Eventverwaltung.getInstance().getListeHauptevent().add(testHauptevent);
+        Eventverwaltung.getInstance().getListeHauptevent().add(testHauptevent2);
         Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Super Tolle Lichter, aber Schwaz licht also achtung"));
         Eventverwaltung.getInstance().getListeMitarbeiter().addAll(testMitarbeiter);
         Eventverwaltung.getInstance().getListeMitarbeiter().addAll(testMitarbeiter2);
-        GUIController controller =  getGuiController();
+        Eventverwaltung.getInstance().getListeKunde().add(new Kunde("Otto", "maier","otto.maier@web.de", 123342, "Dorfstraße 69 25567 Muensterdorf ", 4500, new Vertrag()));
 
+        JSONImport importler = new JSONImport();
+        Quartet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>, ArrayList<Kunde>> data = importler.importAll();
+
+        Eventverwaltung.getInstance().setListeHauptevent(data.getValue0());
+        Eventverwaltung.getInstance().setListeMitarbeiter(data.getValue1());
+        Eventverwaltung.getInstance().setListeHilfsmittel(data.getValue2());
+        Eventverwaltung.getInstance().setListeKunde(data.getValue3());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            GUIController controller =  getGuiController();
+
+            public void run() {
+                JSONExport export = new JSONExport();
+
+                export.exportAll(Eventverwaltung.getInstance().getListeHauptevent(),
+                        Eventverwaltung.getInstance().getListeMitarbeiter(),
+                        Eventverwaltung.getInstance().getListeHilfsmittel(),
+                        Eventverwaltung.getInstance().getListeKunde());
+            }
+        }));
     }
 }

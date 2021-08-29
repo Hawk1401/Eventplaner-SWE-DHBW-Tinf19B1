@@ -176,19 +176,21 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         gbcLeftSide.gridwidth = 1;
         gbcLeftSide.gridheight = 1;
         ZugeoerigeHaupteventComboboxElement = AttributeElement.builder("ZugeoerigeHaupteventComboboxElement")
-                        .labelName(" ")
+                        .labelName("  ")
                         .actionType(AttributeElement.ActionType.COMBOBOX)
                         .build();
 
         ArrayList<Hauptevent> hauptevents = Eventverwaltung.getInstance().getListeHauptevent();
-        ArrayList<String> Names = new ArrayList<>();
+        ArrayList<String> Names = new ArrayList<String>();
 
         for (int i = 0; i < hauptevents.size(); i++) {
             Names.add(hauptevents.get(i).getBezeichnung());
         }
 
-        ZugeoerigeHaupteventComboboxElement.setData(Names);
-        ZugeoerigeHaupteventComboboxElement.setValue(hauptevent.getBezeichnung());
+        ZugeoerigeHaupteventComboboxElement.setData(Names.toArray());
+        if(Names.contains(hauptevent.getBezeichnung())){
+            ZugeoerigeHaupteventComboboxElement.setValue(hauptevent.getBezeichnung());
+        }
         gblLeftSide.setConstraints(ZugeoerigeHaupteventComboboxElement, gbcLeftSide);
         jpLeftSide.add(ZugeoerigeHaupteventComboboxElement);
 
@@ -214,9 +216,9 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         for (int i = 0; i < kunden.size(); i++) {
             kundeName.add(kunden.get(i).getKontaktdaten().getNachname());
         }
-        ZugeoerigeHaupteventComboboxElement.setData(kundeName);
+        KundeComboboxElement.setData(kundeName.toArray());
         if(hauptevent.getVertrag() != null){
-            ZugeoerigeHaupteventComboboxElement.setValue(hauptevent.getVertrag().getKunde().getKontaktdaten().getNachname());
+            KundeComboboxElement.setValue(hauptevent.getVertrag().getKunde().getKontaktdaten().getNachname());
 
         }
 
@@ -304,11 +306,11 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
         for (int i = 0; i < mitarbeiter.size(); i++) {
             if(mitarbeiter.get(i).getRolle() == Rolle.BESCHAFFUNGSPERSONAL || mitarbeiter.get(i).getRolle() == Rolle.MITARBEITER){
-                mitarbieterName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getAdresse());
+                mitarbieterName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail());
             }
 
         }
-        MitarbeiterComboboxElement.setData(mitarbieterName);
+        MitarbeiterComboboxElement.setData(mitarbieterName.toArray());
         gblLeftSide.setConstraints(MitarbeiterComboboxElement, gbcLeftSide);
         jpLeftSide.add(MitarbeiterComboboxElement);
 
@@ -367,7 +369,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 .buttonSize(new Dimension(200,40))
                 .position(ButtonComponent.Position.NORTH)
                 .build();
-        MitarbiterHinzufuegenButtonComponent.addObserver(this);
+        MitarbiterEntfernenButtonComponent.addObserver(this);
         gblLeftSide.setConstraints(MitarbiterEntfernenButtonComponent, gbcLeftSide);
         jpLeftSide.add(MitarbiterEntfernenButtonComponent);
 
@@ -394,7 +396,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         for (int i = 0; i < hilfsmittel.size(); i++) {
             hilfsmittelName.add(hilfsmittel.get(i).getBezeichnung());
         }
-        HilfsmittelComboboxElement.setData(hilfsmittelName);
+        HilfsmittelComboboxElement.setData(hilfsmittelName.toArray());
         gblLeftSide.setConstraints(HilfsmittelComboboxElement, gbcLeftSide);
         jpLeftSide.add(HilfsmittelComboboxElement);
 
@@ -410,7 +412,14 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         gbcLeftSide.gridy = 12;
         gbcLeftSide.gridwidth = 1;
         gbcLeftSide.gridheight = 1;
-        textFieldHilfsmittelAnzahl = TextComponent.builder("textFieldHilfsmittelAnzahl").initialText(Integer.parseInt(_teilevent.getHilfsmittel().getValue1())).build();
+
+        int count = 0;
+        for (Pair<Hilfsmittel, Integer> Hilfsmittel:
+        _teilevent.getHilfsmittel()) {
+            count += Hilfsmittel.getValue1();
+        }
+
+        textFieldHilfsmittelAnzahl = TextComponent.builder("textFieldHilfsmittelAnzahl").initialText(Integer.toString(count)).build();
         gblLeftSide.setConstraints(textFieldHilfsmittelAnzahl, gbcLeftSide);
         jpLeftSide.add(textFieldHilfsmittelAnzahl);
 
@@ -446,7 +455,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 .buttonSize(new Dimension(200,40))
                 .position(ButtonComponent.Position.NORTH)
                 .build();
-        MitarbiterHinzufuegenButtonComponent.addObserver(this);
+        HilfsmittelHinzufuegenButtonComponent.addObserver(this);
         gblLeftSide.setConstraints(HilfsmittelHinzufuegenButtonComponent, gbcLeftSide);
         jpLeftSide.add(HilfsmittelHinzufuegenButtonComponent);
 
@@ -454,7 +463,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         gbcLeftSide.gridy = 14;
         gbcLeftSide.gridwidth = 1;
         gbcLeftSide.gridheight = 1;
-        EventHilfsmittelEntfernenButtonElement = new ButtonElement[]{ ButtonElement.builder("EventHilfsmittelEntfernenButtonElement")
+        EventHilfsmittelEntfernenButtonElement = new ButtonElement[]{ ButtonElement.builder("EventHilfmittelEntfernenButtonElement")
                         .buttonText("Hilfsmittel Entfernen")
                         .type(ButtonElement.Type.BUTTON)
                         .build()};
@@ -464,7 +473,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 .buttonSize(new Dimension(200,40))
                 .position(ButtonComponent.Position.NORTH)
                 .build();
-        MitarbiterHinzufuegenButtonComponent.addObserver(this);
+        HilfsmittelEntfernenButtonComponent.addObserver(this);
         gblLeftSide.setConstraints(HilfsmittelEntfernenButtonComponent, gbcLeftSide);
         jpLeftSide.add(HilfsmittelEntfernenButtonComponent);
 
@@ -500,7 +509,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         jpRightSide.add(labelTeilnehmerzahl);
 
         gbcRightSide.gridx = 1;
-        gbcRightSide.gridy = 5;
+        gbcRightSide.gridy = 6;
         gbcRightSide.gridwidth = 1;
         gbcRightSide.gridheight = 1;
         textFieldTeilnehmerzahl = TextComponent.builder("textFieldTeilnehmerzahl").initialText(Integer.toString(teilnehmer)).build();
@@ -563,11 +572,11 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
         for (int i = 0; i < mitarbeiter.size(); i++) {
             if(mitarbeiter.get(i).getRolle() == Rolle.MONTAGELEITER){
-                mitarbieterMontageName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getAdresse());
+                mitarbieterMontageName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail());
             }
 
         }
-        MontageLeiterComboboxElement.setData(mitarbieterMontageName);
+        MontageLeiterComboboxElement.setData(mitarbieterMontageName.toArray());
         gblRightSide.setConstraints(MontageLeiterComboboxElement, gbcRightSide);
         jpRightSide.add(MontageLeiterComboboxElement);
 
@@ -592,11 +601,11 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
         for (int i = 0; i < mitarbeiter.size(); i++) {
             if(mitarbeiter.get(i).getRolle() == Rolle.GRUPPENLEITER){
-                mitarbieterGruppenLeiterName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getAdresse());
+                mitarbieterGruppenLeiterName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail());
             }
 
         }
-        GruppenLeiterComboboxElement.setData(mitarbieterGruppenLeiterName);
+        GruppenLeiterComboboxElement.setData(mitarbieterGruppenLeiterName.toArray());
         gblRightSide.setConstraints(GruppenLeiterComboboxElement, gbcRightSide);
         jpRightSide.add(GruppenLeiterComboboxElement);
 
@@ -622,7 +631,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
         gbcRightSide.gridx = 1;
         gbcRightSide.gridy = 12;
-        gbcRightSide.gridwidth = 2;
+        gbcRightSide.gridwidth = 1;
         gbcRightSide.gridheight = 1;
         SubmitButtonElement = new ButtonElement[]{ ButtonElement.builder("SubmitButtonElement")
                         .buttonText("Bestätigen")
@@ -642,13 +651,14 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
         gbcRightSide.gridx = 0;
         gbcRightSide.gridy = 12;
-        gbcRightSide.gridwidth = 2;
+        gbcRightSide.gridwidth = 1;
         gbcRightSide.gridheight = 1;
 
         CancleButtonElement = new ButtonElement[]{ ButtonElement.builder("CancleButtonElement")
                         .buttonText("Abbruch")
                         .type(ButtonElement.Type.BUTTON)
                         .build()};
+
         CancleButtonComponent = ButtonComponent
                 .builder("CancleButtonComponent")
                 .buttonElements(CancleButtonElement)
@@ -656,6 +666,8 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 .position(ButtonComponent.Position.NORTH)
                 .build();
         CancleButtonComponent.addObserver(this);
+
+
         gblRightSide.setConstraints(CancleButtonComponent, gbcRightSide);
         jpRightSide.add(CancleButtonComponent);
 
@@ -708,18 +720,18 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 // Entfernen des Mitarbeiters von teilevent von der entsprechende Liste anhand seiner Rolle
                 ArrayList<Mitarbeiter> mitarbeiter = Eventverwaltung.getInstance().getListeMitarbeiter();
                 for (int i = 0; i < mitarbeiter.size(); i++) {
-                    if(mitarbeiter.get(i).getRolle() == Rolle.BESCHAFFUNGSPERSONAL
-                        && mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail() == emailMitarbeiter){
-                        _teilevent.getBeschaffungsPersonal().remove(mitarbeiter.get(i));
-                    }
-                    else if(mitarbeiter.get(i).getRolle() == Rolle.MITARBEITER
-                        && mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail() == emailMitarbeiter){
-                        _teilevent.getMontagePersonal().remove(mitarbeiter.get(i));
+                    if(mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail() == emailMitarbeiter){
+                        if(mitarbeiter.get(i).getRolle() == Rolle.BESCHAFFUNGSPERSONAL){
+                            _teilevent.getBeschaffungsPersonal().remove(mitarbeiter.get(i));
+                        }
+                        else if(mitarbeiter.get(i).getRolle() == Rolle.MITARBEITER){
+                            _teilevent.getMontagePersonal().remove(mitarbeiter.get(i));
+                        }
                     }
                 }
                 updateTableMitarbeiter();
             }
-            if (((ButtonElement) ge.getData()).getID().equals("EventHilfmittelHinzufuegenButtonElement")) {
+            if (((ButtonElement) ge.getData()).getID().equals("EventHilfsmittelHinzufuegenButtonElement")) {
                 String name = (String) HilfsmittelComboboxElement.getValue();
                 int anzahl = Integer.parseInt(textFieldHilfsmittelAnzahl.getText());
                 ArrayList<Hilfsmittel> hilfsmittel = Eventverwaltung.getInstance().getListeHilfsmittel();
@@ -807,7 +819,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
     private void updateTableMitarbeiter(){
         // GUI Mitarbeiter liste aktualisieren
-        ArrayList<Mitarbeiter> mitarbeiters = _teilevent.getBeschaffungsPersonal();
+        ArrayList<Mitarbeiter> mitarbeiters = new ArrayList<Mitarbeiter>(_teilevent.getBeschaffungsPersonal());
         mitarbeiters.addAll(_teilevent.getMontagePersonal());
 
         elemsMitarbeiter = new IDepictable[mitarbeiters.size()];
@@ -829,7 +841,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
            elemsHilfsmittel[i] = new tableClassHilfsmittel(hilfsmittelAnzahlString.getValue0().getBezeichnung(), hilfsmittelAnzahlString.getValue1());
         }
 
-        tableMitarbeiter.setData(elemsHilfsmittel, new String[]{"Bezeichnung", "Anzahl"});
+        tableHilfsmittel.setData(elemsHilfsmittel, new String[]{"Bezeichnung", "Anzahl"});
     }
 
     public class tableClassMitarbeiter implements IDepictable {

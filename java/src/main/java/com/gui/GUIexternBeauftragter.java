@@ -72,7 +72,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
         gbcExternBeauftragte.gridy = 1;
         gbcExternBeauftragte.gridwidth = 1;
         gbcExternBeauftragte.gridheight = 1;
-        textFieldFirmenname = TextComponent.builder("textFieldFirmenname").initialText("new dawn").build();
+        textFieldFirmenname = TextComponent.builder("textFieldFirmenname").initialText("").build();
         gblExternBeauftragte.setConstraints(textFieldFirmenname, gbcExternBeauftragte);
         jp.add(textFieldFirmenname);
        
@@ -88,7 +88,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
         gbcExternBeauftragte.gridy = 2;
         gbcExternBeauftragte.gridwidth = 1;
         gbcExternBeauftragte.gridheight = 1;
-        textFieldAngebot = TextComponent.builder("textFieldAngebot").initialText("new dawn").build();
+        textFieldAngebot = TextComponent.builder("textFieldAngebot").initialText("").build();
         gblExternBeauftragte.setConstraints(textFieldAngebot, gbcExternBeauftragte);
         jp.add(textFieldAngebot);
 
@@ -104,7 +104,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
         gbcExternBeauftragte.gridy = 3;
         gbcExternBeauftragte.gridwidth = 1;
         gbcExternBeauftragte.gridheight = 1;
-        textFieldAnzahlPersonen = TextComponent.builder("textFieldAnzahlPersonen").initialText("new dawn").build();
+        textFieldAnzahlPersonen = TextComponent.builder("textFieldAnzahlPersonen").initialText("").build();
         gblExternBeauftragte.setConstraints(textFieldAnzahlPersonen, gbcExternBeauftragte);
         jp.add(textFieldAnzahlPersonen);
 
@@ -120,7 +120,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 4;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldBeschreibung = TextComponent.builder("textFieldBeschreibung").initialText("new dawn").build();
+         textFieldBeschreibung = TextComponent.builder("textFieldBeschreibung").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldBeschreibung, gbcExternBeauftragte);
          jp.add(textFieldBeschreibung);
 
@@ -144,7 +144,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 1;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldVorname = TextComponent.builder("textFieldVorname").initialText("new dawn").build();
+         textFieldVorname = TextComponent.builder("textFieldVorname").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldVorname, gbcExternBeauftragte);
          jp.add(textFieldVorname);
 
@@ -160,7 +160,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 2;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldNachname = TextComponent.builder("textFieldNachname").initialText("new dawn").build();
+         textFieldNachname = TextComponent.builder("textFieldNachname").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldNachname, gbcExternBeauftragte);
          jp.add(textFieldNachname);
 
@@ -176,7 +176,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 3;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldEmail = TextComponent.builder("textFieldEmail").initialText("new dawn").build();
+         textFieldEmail = TextComponent.builder("textFieldEmail").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldEmail, gbcExternBeauftragte);
          jp.add(textFieldEmail);
 
@@ -192,7 +192,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 4;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldTelefonnummer = TextComponent.builder("textFieldTelefonnummer").initialText("new dawn").build();
+         textFieldTelefonnummer = TextComponent.builder("textFieldTelefonnummer").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldTelefonnummer, gbcExternBeauftragte);
          jp.add(textFieldTelefonnummer);
 
@@ -208,7 +208,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 5;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldAdresse = TextComponent.builder("textFieldAdresse").initialText("new dawn").build();
+         textFieldAdresse = TextComponent.builder("textFieldAdresse").initialText("").build();
          gblExternBeauftragte.setConstraints(textFieldAdresse, gbcExternBeauftragte);
          jp.add(textFieldAdresse);
 

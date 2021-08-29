@@ -68,10 +68,11 @@ public class GUITeilevent extends GUIComponent implements IGUIEventListener{
     }
 
     public GUITeilevent(){
-        
-        
-        
-        BuildUI("", "", "", "", "", "", "", new tableclass3[0] , new tableclass2[0]);
+        String buffer = "";
+        for (int i = 0; i < 15; i++) {
+            buffer +=  "A";
+        }
+        BuildUI(buffer, "", "", "", "", "", "", new tableclass3[0] , new tableclass2[0]);
     }
 
 

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.dataTypes.*;
 import com.model.event.*;
 import com.model.person.*;
+import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class JSONImport implements Import{
         Hauptevent[] haupteventList;
 
         try{
-            FileReader file = new FileReader("/Hauptevents.json");
+            FileReader file = new FileReader("Hauptevents.json");
             haupteventList = objectMapper.readValue(file, Hauptevent[].class);
             return new ArrayList<Hauptevent>(Arrays.asList(haupteventList));
         }catch (java.io.IOException e){
@@ -37,7 +38,7 @@ public class JSONImport implements Import{
         Mitarbeiter[] mitarbeiterList;
 
         try{
-            FileReader file = new FileReader("/Mitarbeiter.json");
+            FileReader file = new FileReader("Mitarbeiter.json");
             mitarbeiterList = objectMapper.readValue(file, Mitarbeiter[].class);
             return new ArrayList<Mitarbeiter>(Arrays.asList(mitarbeiterList));
         }catch (java.io.IOException e){
@@ -52,7 +53,7 @@ public class JSONImport implements Import{
         Hilfsmittel[] hilfsmittelList;
 
         try{
-            FileReader file = new FileReader("/Hilfsmittel.json");
+            FileReader file = new FileReader("Hilfsmittel.json");
             hilfsmittelList = objectMapper.readValue(file, Hilfsmittel[].class);
             return new ArrayList<Hilfsmittel>(Arrays.asList(hilfsmittelList));
         }catch (java.io.IOException e){
@@ -60,14 +61,30 @@ public class JSONImport implements Import{
         }
         return new ArrayList<Hilfsmittel>();
     }
-    
 
     @Override
-    public Triplet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>> importAll() {
+    public ArrayList<Kunde> importKunden() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Kunde[] KundenList;
+
+        try{
+            FileReader file = new FileReader("Kunden.json");
+            KundenList = objectMapper.readValue(file, Kunde[].class);
+            return new ArrayList<Kunde>(Arrays.asList(KundenList));
+        }catch (java.io.IOException e){
+            e.printStackTrace();
+        }
+        return new ArrayList<Kunde>();
+    }
+
+
+    @Override
+    public Quartet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>, ArrayList<Kunde>> importAll() {
         ArrayList<Hauptevent> haupteventList = importHauptevent();
         ArrayList<Mitarbeiter> mitarbeiterList = importMitarbieter();
         ArrayList<Hilfsmittel> hilfsmittelList = importHilfsmittel();
-        Triplet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>> tuple =  new Triplet(haupteventList, mitarbeiterList, hilfsmittelList);
+        ArrayList<Kunde> kunden = importKunden();
+        Quartet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>, ArrayList<Kunde>> tuple =  new Quartet(haupteventList, mitarbeiterList, hilfsmittelList, kunden);
         return tuple;
     }
 }

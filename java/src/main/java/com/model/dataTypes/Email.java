@@ -10,6 +10,9 @@ public class Email {
         gesamteEmail = email;
     }
 
+    public Email(){
+
+    }
     public Email(String adresse, String host){
         this.adresse = adresse;
         this.host = host;

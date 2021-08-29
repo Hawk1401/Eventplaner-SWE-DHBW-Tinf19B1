@@ -15,7 +15,11 @@ import com.model.event.*;
 import com.model.Vertrag;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +69,10 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
     //private GUIEventlist guiEventlist = new GUIEventlist(this);
     private JFrame frame;
     private Hauptevent hauptevent;
+
+
+    private String startDateTemp = null;
+    private String endDateTemp = null;
 
     public GUIHaupteventBearbeiten(JFrame frame, Hauptevent hauptevent){
         this.hauptevent = hauptevent;
@@ -118,10 +126,10 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
 
         for (int i = 0; i < mitarbeiter.size(); i++) {
             if(mitarbeiter.get(i).getRolle() == Rolle.ORGANISATOR){
-                organisatorenName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getAdresse());
+                organisatorenName.add(mitarbeiter.get(i).getKontaktdaten().getEmail().getGesamteEmail());
             }
         }
-        OrganisatorComboboxElement.setData(organisatorenName);
+        OrganisatorComboboxElement.setData(organisatorenName.toArray());
         gbl.setConstraints(OrganisatorComboboxElement, gbcLeftSide);
         jp.add(OrganisatorComboboxElement);
 
@@ -386,16 +394,52 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
                     GUIDateTimeSelector g = new GUIDateTimeSelector(this, "End");
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("BildHochladenButtonElement")) {
+                    FileFilter filter = new FileNameExtensionFilter("Bilder",
+                            "gif", "png", "jpg");
 
+                    JFileChooser fc = new JFileChooser();
+                    fc.addChoosableFileFilter(filter);
+
+                    int returnVal = fc.showOpenDialog(this);
+
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        //This is where a real application would open the file.
+                        hauptevent.getBilder().add(new Bild(file.getName(), file.getPath()));
+                    }
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("BildAnzeiheigenButtonElement")) {
 
+                        hauptevent.getBilder().stream().map(x -> x.getDateiPfad()).forEach(x -> {
+                            try {
+                                Desktop.getDesktop().open(new File(x));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("VertragSpeichernButtonElement")) {
+                    FileFilter filter = new FileNameExtensionFilter("PDF",
+                            "pdf");
 
+                    JFileChooser fc = new JFileChooser();
+                    fc.addChoosableFileFilter(filter);
+                    int returnVal = fc.showOpenDialog(this);
+
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        //This is where a real application would open the file.
+                        hauptevent.setVertrag(new Vertrag());
+                        hauptevent.getVertrag().setPfd(new PDF(file.getPath()));
+
+                    }
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("VertragAnsehnButtonElement")) {
-
+                    try {
+                        Desktop.getDesktop().open(new File(hauptevent.getVertrag().getPfd().getPfad()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 if (((ButtonElement) ge.getData()).getID().equals("TeilEventAnzeigenButtonElement")) {
@@ -425,8 +469,18 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
                     // bilder
 
 
-                    this.hauptevent.setEnd_Termin(new Datum(DatumButtonElement[0].getButtonText()));
-                    this.hauptevent.setStart_Termin(new Datum(DatumButtonElement[1].getButtonText()));
+                    if(startDateTemp != null){
+                        this.hauptevent.setEnd_Termin(new Datum(startDateTemp));
+                    }else{
+                        this.hauptevent.setEnd_Termin(new Datum(DatumButtonElement[0].getButtonText()));
+                    }
+
+                    if(endDateTemp != null){
+                        this.hauptevent.setStart_Termin(new Datum(endDateTemp));
+                    }else{
+                        this.hauptevent.setStart_Termin(new Datum(DatumButtonElement[1].getButtonText()));
+                    }
+
                     this.hauptevent.setStatus(status);
                     this.hauptevent.setStatus(status);
                     this.hauptevent.setBeschreibung(beschreibungen);
@@ -434,6 +488,9 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
                     this.hauptevent.setKosten(bbudget);
                     this.hauptevent.setBezeichnung(name);
 
+                    if(!Eventverwaltung.getInstance().getListeHauptevent().contains(this.hauptevent)){
+                        Eventverwaltung.getInstance().getListeHauptevent().add(hauptevent);
+                    }
                     this.frame.dispose();
                 }
             }catch (Exception e){
@@ -455,9 +512,11 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
     public void SetTimeSeletet(Timestamp timestamp, String id) {
         String s = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(timestamp);
         if(id.equals("Start")){
+            startDateTemp = s;
             DatumButtonElement[0].setButtonText(s);
         }
         if(id.equals("End")){
+            endDateTemp = s;
             DatumButtonElement[0].setButtonText(s);
         }
     }

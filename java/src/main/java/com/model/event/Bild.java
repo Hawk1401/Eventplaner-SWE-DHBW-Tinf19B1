@@ -8,7 +8,8 @@ public class Bild {
     public Bild(){}
 
     public Bild(String name, String dateiPfad){
-
+        this.Name = name;
+        this.DateiPfad = dateiPfad;
     }
 
     public String ToString(){

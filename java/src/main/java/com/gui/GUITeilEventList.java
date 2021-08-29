@@ -1,5 +1,6 @@
 package com.gui;
 
+import com.model.event.Hilfsmittel;
 import com.model.event.Teilevent;
 import de.dhbwka.swe.utils.event.GUIEvent;
 import de.dhbwka.swe.utils.event.IGUIEventListener;
@@ -17,13 +18,19 @@ public class GUITeilEventList extends GUIComponent implements IGUIEventListener 
 
     GUITeilEventList(List<Teilevent> list, IGUIEventListener obs){
 
-
+/*
         IDepictable[] elems = new IDepictable[]{
                 new tableclass("Essen Fassen", "02.04.2003 15:05", "02.04.2004 15:05", "In palnung", "3"),
                 new tableclass("Party", "02.06.2003 15:05", "02.04.2006 01:05", "In palnung", "3"),
                 new tableclass("Abildung", "02.04.2003 15:05", "02.04.2004 15:05", "In palnung", "1")
 
-        };
+        };*/
+
+        IDepictable[] elems = new IDepictable[list.size()];
+        for (int i = 0; i < elems.length; i++) {
+            Teilevent teilevent = list.get(i);
+            elems[i] = new tableclass(teilevent.getBezeichnung(), teilevent.getStart_Termin().getDatum(), teilevent.getEnd_Termin().getDatum(), teilevent.getStatus().toString(), Integer.toString(teilevent.getTeilnehmeranzahl()));
+        }
         table = SimpleTableComponent.builder("tableEvents").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"name", "Start Datum", "End Datum", "Status", "Teilnehmeranzahl"}).build();
 
         table.setData(elems, new String[]{"name", "Start Datum", "End Datum", "Status", "Teilnehmeranzahl"});

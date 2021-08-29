@@ -24,7 +24,6 @@ public class GUIEventlist extends GUIComponent implements IGUIEventListener {
 
 
     public GUIEventlist(IGUIEventListener obs) {
-        Hauptevent he = com.StartUp.testHauptevent;
         listHauptevent = Eventverwaltung.getInstance().getListeHauptevent();
 
         IDepictable[] elems = new IDepictable[listHauptevent.size()];

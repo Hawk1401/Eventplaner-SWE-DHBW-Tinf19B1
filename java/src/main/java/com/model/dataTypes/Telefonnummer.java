@@ -17,6 +17,9 @@ public class Telefonnummer {
         this.nummer = nummer;
     }
 
+    public  Telefonnummer(){
+
+    }
     public void ueberpruefeTelefonnummer(){
         // TODO missing code in methode ueberpruefeTelefonnummer
     }

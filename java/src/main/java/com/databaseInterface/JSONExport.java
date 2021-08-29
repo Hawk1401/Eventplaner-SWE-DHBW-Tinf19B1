@@ -29,8 +29,10 @@ public class JSONExport implements Export{
 
         // save JSON local
         try{
-            FileWriter file = new FileWriter("/Hauptevents.json");
+            FileWriter file = new FileWriter("Hauptevents.json");
             file.write(jsonInString);
+            file.close();
+
         } catch (java.io.IOException e){
             e.printStackTrace();
         }
@@ -54,8 +56,10 @@ public class JSONExport implements Export{
 
         // save JSON local
         try{
-            FileWriter file = new FileWriter("/Mitarbeiter.json");
+            FileWriter file = new FileWriter("Mitarbeiter.json");
             file.write(jsonInString);
+            file.close();
+
         } catch (java.io.IOException e){
             e.printStackTrace();
         }
@@ -77,8 +81,9 @@ public class JSONExport implements Export{
 
         // save JSON local
         try{
-            FileWriter file = new FileWriter("/Hilfsmittel.json");
+            FileWriter file = new FileWriter("Hilfsmittel.json");
             file.write(jsonInString);
+            file.close();
         } catch (java.io.IOException e){
             e.printStackTrace();
         }
@@ -86,9 +91,37 @@ public class JSONExport implements Export{
     }
 
     @Override
-    public void exportAll(ArrayList<Hauptevent> haupteventList, ArrayList<Mitarbeiter> mitarbeiterList, ArrayList<Hilfsmittel> hilfsmittelList) {
+    public void exportKunden(ArrayList<Kunde> kundenList) {
+        String jsonInString = "";
+        // Create JSON
+        ObjectMapper mapper = new ObjectMapper();
+        //Object to JSON in String
+        try {
+            jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(kundenList);
+            System.out.println(jsonInString);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // save JSON local
+        try{
+            FileWriter file = new FileWriter("Kunden.json");
+            file.write(jsonInString);
+            file.close();
+        } catch (java.io.IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void exportAll(ArrayList<Hauptevent> haupteventList,
+                          ArrayList<Mitarbeiter> mitarbeiterList,
+                          ArrayList<Hilfsmittel> hilfsmittelList,
+                          ArrayList<Kunde> kundenList) {
         exportHauptevent(haupteventList);
         exportMitarbeiter(mitarbeiterList);
         exportHilfsmittel(hilfsmittelList);
+        exportKunden(kundenList);
     }
 }

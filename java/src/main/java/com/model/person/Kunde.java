@@ -12,11 +12,16 @@ public class Kunde {
     Kontaktdaten kontaktdaten;
     double budget;
     Vertrag vertrag;        // Fehler im Klassendiagramm!!
-                              // Entweder Kunde im com.model.Vertrag oder com.model.Vertrag in Kunde beides geht aber nicht.
+
+    // Entweder Kunde im com.model.Vertrag oder com.model.Vertrag in Kunde beides geht aber nicht.
     public Kunde(String vorname, String nachname, String email, int telefonnummer, String anschrift, double budget, Vertrag vertrag){
         this.setKontaktdaten(vorname, nachname, email, telefonnummer, anschrift);
         this.budget = budget;
         this.vertrag = vertrag;
+    }
+
+    public Kunde(){
+
     }
 
      public void setKontaktdaten(Kontaktdaten kontaktdaten){
@@ -34,8 +39,8 @@ public class Kunde {
      public double getBudget(){
         return this.budget;
      }
-     public void setVertrag(String vertrag){
-        this.vertrag = new Vertrag(vertrag);
+     public void setVertrag(Vertrag vertrag){
+        this.vertrag = vertrag;
      }
      public Vertrag getVertrag(){
         return this.vertrag;

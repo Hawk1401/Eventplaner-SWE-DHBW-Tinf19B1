@@ -110,7 +110,9 @@ public class GUIController implements IGUIEventListener {
         if (ge.getCmd().equals(ButtonComponent.Commands.BUTTON_PRESSED)) {
             if (((ButtonElement) ge.getData()).getID().equals("BTN-neuesHauptevent")) {
                 JFrame frame = new JFrame();
-                GUIHaupteventBearbeiten guiHaupteventBearbeiten = new GUIHaupteventBearbeiten(frame, new Hauptevent());
+                Hauptevent hauptevent = new Hauptevent();
+
+                GUIHaupteventBearbeiten guiHaupteventBearbeiten = new GUIHaupteventBearbeiten(frame, hauptevent);
                 frame.add(guiHaupteventBearbeiten.getOverviewPanel());
                 frame.pack();
                 frame.setMinimumSize(new Dimension(800,    600));
@@ -125,13 +127,16 @@ public class GUIController implements IGUIEventListener {
                 frame.setVisible(true);
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-HilfsmittelBearbeiten")) {
-
+                JOptionPane.showMessageDialog(frame,
+                        "Not Implemented Yet");
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-KundeBearbeiten")) {
-
+                JOptionPane.showMessageDialog(frame,
+                        "Not Implemented Yet");
             }
             if (((ButtonElement) ge.getData()).getID().equals("BTN-MitarbeiterBearbeiten")) {
-
+                JOptionPane.showMessageDialog(frame,
+                        "Not Implemented Yet");
             }
         }
 

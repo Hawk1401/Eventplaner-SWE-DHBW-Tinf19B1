@@ -7,7 +7,9 @@ public class Kontaktdaten {
     Email email;
     Telefonnummer telefonnummer;
     Anschrift anschrift;
-    
+    public Kontaktdaten(){
+
+    }
     public Kontaktdaten(String vorname, String nachname, Email email, Telefonnummer telefonnummer, Anschrift anschrift){
         this.vorname = vorname;
         this.nachname = nachname;

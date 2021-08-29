@@ -10,6 +10,7 @@ public class Anschrift {
     String land;
     String gesamteAdresse;
 
+    public Anschrift(){}
     public Anschrift(String adresse){
         setGesamteAdresse(adresse);
     }

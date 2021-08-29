@@ -7,12 +7,15 @@ public class Mitarbeiter {
 
     Kontaktdaten kontaktdaten;
     Rolle rolle;
-    int personalnummer;
+    String personalnummer;
     ArrayList<Aufgabenfeld> aufgabenfeldList = new ArrayList<Aufgabenfeld>();
     Datum geburtsdatum;
     String geburtsort;
     String tempName;    // nur zum Testen, sollte wieder entfernt werden
 
+    public Mitarbeiter(){
+
+    }
     public Mitarbeiter(String vorname, String nachname, String email,
         long tel, String adresse, int personalnummer, Rolle rolle, ArrayList<Aufgabenfeld> aufgabenfeldList,
         Datum geburtsdatum, String geburtsort){
@@ -21,7 +24,7 @@ public class Mitarbeiter {
                                           new Telefonnummer(tel),
                                           new Anschrift(adresse)));
         setRolle(rolle);
-        setPersonalnummer(personalnummer);
+        setPersonalnummer(Integer.toString(personalnummer));
         setAufgabenListe(aufgabenfeldList);
         setGeburtsdatum(geburtsdatum);
         setGeburtsort(geburtsort);
@@ -45,27 +48,41 @@ public class Mitarbeiter {
         return this.rolle;
     }
 
-    public void setPersonalnummer(int personalnummer){
+    public void setPersonalnummer(String personalnummer){
         this.personalnummer = personalnummer;
     }
-    public int getPersonalnummern(){
+    public String getPersonalnummer(){
         return this.personalnummer;
     }
  
     public void setAufgabenListe(ArrayList<Aufgabenfeld> aufgabenfeldList){
         this.aufgabenfeldList = aufgabenfeldList;
     }
-    public ArrayList<Aufgabenfeld> getAufgabenListe(){
-        return this.aufgabenfeldList;
-    }
-    
+
     public void setGeburtsdatum(Datum geburtsdatum){
         this.geburtsdatum = geburtsdatum;
     }
     public Datum getGeburtsdatum(){
         return this.geburtsdatum;
     }
-    
+
+
+    public ArrayList<Aufgabenfeld> getAufgabenfeldList() {
+        return aufgabenfeldList;
+    }
+
+    public void setAufgabenfeldList(ArrayList<Aufgabenfeld> aufgabenfeldList) {
+        this.aufgabenfeldList = aufgabenfeldList;
+    }
+
+    public String getTempName() {
+        return tempName;
+    }
+
+    public void setTempName(String tempName) {
+        this.tempName = tempName;
+    }
+
     public void setGeburtsort(String geburtsort){
         this.geburtsort = geburtsort;
     }

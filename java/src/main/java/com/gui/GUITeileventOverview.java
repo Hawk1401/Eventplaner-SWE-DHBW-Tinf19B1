@@ -24,7 +24,7 @@ public class GUITeileventOverview implements IGUIEventListener {
         frame.setTitle("Teilevents");
 
         frame.pack();
-        frame.setMinimumSize(new Dimension(1000,    600));
+        frame.setMinimumSize(new Dimension(1000,    500));
         frame.setVisible(true);
 
         frame.setLayout(new BorderLayout());
@@ -36,7 +36,7 @@ public class GUITeileventOverview implements IGUIEventListener {
         Center.add(EventList.getTable());
 
         GUITeilevent event = new GUITeilevent();
-        Center.add(event);
+        Center.add(event.getOverviewPanel());
 
         frame.add(Center);
         frame.pack();

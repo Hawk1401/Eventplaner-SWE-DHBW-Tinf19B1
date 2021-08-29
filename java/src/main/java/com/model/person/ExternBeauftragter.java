@@ -14,6 +14,64 @@ public class ExternBeauftragter {
     int anzahlPersonal;
     String test;
 
+
+    public ExternBeauftragter(){}
+    public Vertrag getVertrag() {
+        return vertrag;
+    }
+
+    public void setVertrag(Vertrag vertrag) {
+        this.vertrag = vertrag;
+    }
+
+    public Kontaktdaten getKontaktdaten() {
+        return kontaktdaten;
+    }
+
+    public void setKontaktdaten(Kontaktdaten kontaktdaten) {
+        this.kontaktdaten = kontaktdaten;
+    }
+
+    public String getFirmenname() {
+        return firmenname;
+    }
+
+    public void setFirmenname(String firmenname) {
+        this.firmenname = firmenname;
+    }
+
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
+    }
+
+    public Angebot getAngebot() {
+        return angebot;
+    }
+
+    public void setAngebot(Angebot angebot) {
+        this.angebot = angebot;
+    }
+
+    public int getAnzahlPersonal() {
+        return anzahlPersonal;
+    }
+
+    public void setAnzahlPersonal(int anzahlPersonal) {
+        this.anzahlPersonal = anzahlPersonal;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
     public ExternBeauftragter(String externBeauftragter) {
         this.test = externBeauftragter;
     }

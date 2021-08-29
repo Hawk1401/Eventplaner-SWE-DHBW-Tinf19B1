@@ -8,6 +8,7 @@ public class Hilfsmittel {
     String beschreibung;        // Fehler im Klassendiagramm -> int zu String
 
 
+    public Hilfsmittel(){}
     public Hilfsmittel(String name){
         bezeichnung = name;
     } 

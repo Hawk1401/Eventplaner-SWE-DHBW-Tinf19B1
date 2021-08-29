@@ -1,6 +1,7 @@
 package com.model;
 
 import com.model.dataTypes.Datum;
+import com.model.dataTypes.PDF;
 import com.model.person.*;;
 
 public class Vertrag {
@@ -11,6 +12,15 @@ public class Vertrag {
     Datum datum;
     int vertragsnummer;
     Kunde kunde;
+    PDF pfd;
+
+    public PDF getPfd() {
+        return pfd;
+    }
+
+    public void setPfd(PDF pfd) {
+        this.pfd = pfd;
+    }
 
     public Vertrag(){
     }

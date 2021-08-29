@@ -9,5 +9,7 @@ public interface Export {
     public void exportHauptevent(ArrayList<Hauptevent> haupteventList);
     public void exportMitarbeiter(ArrayList<Mitarbeiter> haupteventList);
     public void exportHilfsmittel(ArrayList<Hilfsmittel> haupteventList);
-    public void exportAll(ArrayList<Hauptevent> haupteventList, ArrayList<Mitarbeiter> mitarbeiterList, ArrayList<Hilfsmittel> hilfsmittelList);
+    public void exportKunden(ArrayList<Kunde> kundenList);
+
+    public void exportAll(ArrayList<Hauptevent> haupteventList, ArrayList<Mitarbeiter> mitarbeiterList, ArrayList<Hilfsmittel> hilfsmittelList, ArrayList<Kunde> kundenList);
 }
