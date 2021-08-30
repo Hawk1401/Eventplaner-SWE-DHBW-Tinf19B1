@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.databaseInterface.Eventverwaltung;
+import com.model.event.Hauptevent;
 import com.model.event.Hilfsmittel;
 import com.model.person.*;
 import com.model.event.Teilevent;
@@ -14,8 +16,9 @@ import org.javatuples.Pair;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.EventListener;
 
-public class GUITeilevent extends GUIComponent implements IGUIEventListener{
+public class GUITeilevent extends GUIComponent implements IGUIEventListener, EventListener {
     private JPanel jp = new JPanel();
     public JPanel getOverviewPanel(){return  jp;}
     private Teilevent _teilevent;
@@ -38,19 +41,19 @@ public class GUITeilevent extends GUIComponent implements IGUIEventListener{
         this._teilevent = teilevent;
 
         String name =  _teilevent.getBezeichnung();
-        String HauptEventName = _teilevent.getHauptevent().getBezeichnung();
+        String HauptEventName = _teilevent.getHauptevent();
         String StartDatum = _teilevent.getStart_Termin().getDatum();
         String EndDatum = _teilevent.getEnd_Termin().getDatum();
         String status = _teilevent.getStatus().toString();
         String beschreibung = _teilevent.getBeschreibung();
         String kosten = Double.toString(_teilevent.getKosten());
 
-        ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittels = _teilevent.getHilfsmittel();
+        ArrayList<Object[]> hilfsmittels = _teilevent.getHilfsmittel();
 
         IDepictable[] elemsHilfsmittel = new IDepictable[hilfsmittels.size()];
         for (int i = 0; i < elemsHilfsmittel.length ; i++) {
-            Hilfsmittel hilfsmittel = hilfsmittels.get(i).getValue0();
-            elemsHilfsmittel[i] = new tableclass3(hilfsmittel.getBezeichnung(), hilfsmittel.getBeschreibung(), Integer.toString(hilfsmittels.get(i).getValue1()));
+            Hilfsmittel hilfsmittel = (Hilfsmittel) hilfsmittels.get(i)[0];
+            elemsHilfsmittel[i] = new tableclass3(hilfsmittel.getBezeichnung(), hilfsmittel.getBeschreibung(), Integer.toString((int)hilfsmittels.get(i)[1]));
         }
 
         ArrayList<Mitarbeiter> mitarbeiters = _teilevent.getBeschaffungsPersonal();
@@ -300,18 +303,43 @@ public class GUITeilevent extends GUIComponent implements IGUIEventListener{
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
 
-        JButton btnBerabeiten = new JButton("Event Bearbeiten");
+        //JButton btnBerabeiten = new JButton("Event Bearbeiten");
+        //btnBerabeiten.addActionListener();
 
 
-        gbl.setConstraints(btnBerabeiten, gbc);
-        jp.add(btnBerabeiten);
+        ButtonElement[] EventButtonElement = new ButtonElement[]{ ButtonElement.builder("EventButtonElement")
+                .buttonText("Event Bearbeiten")
+                .type(ButtonElement.Type.BUTTON)
+                .build()};
+
+        ButtonComponent EventButtonComponent = ButtonComponent
+                .builder("EventButtonComponent")
+                .buttonElements(EventButtonElement)
+                .buttonSize(new Dimension(200,40))
+                .position(ButtonComponent.Position.NORTH)
+                .build();
+
+
+        EventButtonComponent.addObserver(this);
+
+        gbl.setConstraints(EventButtonComponent, gbc);
+        jp.add(EventButtonComponent);
     }
     @Override
     public void processGUIEvent(GUIEvent ge) {
         if (ge.getCmd().equals(ButtonComponent.Commands.BUTTON_PRESSED)) {
             if (((ButtonElement) ge.getData()).getID().equals("KundeButtonElement")) {
                 JFrame frameKunde = new JFrame();
-                Kunde kunde = _teilevent.getHauptevent().getVertrag().getKunde();
+
+                ArrayList<Hauptevent> events = Eventverwaltung.getInstance().getListeHauptevent();
+                Hauptevent hauptevent = null;
+                for (int i = 0; i < events.size(); i++) {
+                    if(events.get(i).getBezeichnung() == _teilevent.getHauptevent()){
+                        hauptevent = events.get(i);
+                    }
+                }
+
+                Kunde kunde = hauptevent.getVertrag().getKunde();
                 frameKunde.add(new GUIKunde(frameKunde, kunde));
                 frameKunde.show();
             }
@@ -351,9 +379,13 @@ public class GUITeilevent extends GUIComponent implements IGUIEventListener{
             String Beschreibung;
             String Anzahl;
 
-            public tableclass3(String eMail, String Beschreibung, String Anzahl){
-                this.Name = Name;
+            public tableclass3(String name, String Beschreibung, String Anzahl){
+                this.Name = name;
+
                 this.Beschreibung = Beschreibung;
+                if(this.Beschreibung == null){
+                    this.Beschreibung = " ";
+                }
                 this.Anzahl = Anzahl;
             }
             @Override

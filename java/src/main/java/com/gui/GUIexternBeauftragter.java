@@ -1,8 +1,14 @@
 package com.gui;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
+import com.model.Vertrag;
+import com.model.dataTypes.PDF;
 import de.dhbwka.swe.utils.event.GUIEvent;
 import de.dhbwka.swe.utils.event.IGUIEventListener;
 import de.dhbwka.swe.utils.gui.*;
@@ -37,7 +43,8 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
     public TextComponent textFieldEmail;
     public TextComponent textFieldTelefonnummer;
     public TextComponent textFieldAdresse;
-    
+
+    public PDF pdf;
     private ButtonElement[] EventVertragHinzufuegenButtonElement;
     
     private ButtonComponent VertragHinzufuegenButtonComponent;
@@ -72,7 +79,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
         gbcExternBeauftragte.gridy = 1;
         gbcExternBeauftragte.gridwidth = 1;
         gbcExternBeauftragte.gridheight = 1;
-        textFieldFirmenname = TextComponent.builder("textFieldFirmenname").initialText("").build();
+        textFieldFirmenname = TextComponent.builder("textFieldFirmenname").initialText("       ").build();
         gblExternBeauftragte.setConstraints(textFieldFirmenname, gbcExternBeauftragte);
         jp.add(textFieldFirmenname);
        
@@ -144,7 +151,7 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
          gbcExternBeauftragte.gridy = 1;
          gbcExternBeauftragte.gridwidth = 1;
          gbcExternBeauftragte.gridheight = 1;
-         textFieldVorname = TextComponent.builder("textFieldVorname").initialText("").build();
+         textFieldVorname = TextComponent.builder("textFieldVorname").initialText("     ").build();
          gblExternBeauftragte.setConstraints(textFieldVorname, gbcExternBeauftragte);
          jp.add(textFieldVorname);
 
@@ -227,8 +234,29 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
                 .position(ButtonComponent.Position.NORTH)
                 .build();
         VertragHinzufuegenButtonComponent.addObserver(this);
-         gblExternBeauftragte.setConstraints(VertragHinzufuegenButtonComponent, gbcExternBeauftragte);
-         jp.add(VertragHinzufuegenButtonComponent);
+        gblExternBeauftragte.setConstraints(VertragHinzufuegenButtonComponent, gbcExternBeauftragte);
+        jp.add(VertragHinzufuegenButtonComponent);
+
+
+
+
+        gbcExternBeauftragte.gridx = 2;
+        gbcExternBeauftragte.gridy = 6;
+        gbcExternBeauftragte.gridwidth = 2;
+        gbcExternBeauftragte.gridheight = 1;
+        ButtonElement[] EventVertragAnsehenButtonElement = new ButtonElement[]{ ButtonElement.builder("VertragAnsehenButtonElement")
+                .buttonText("Vertrag Ansehen")
+                .type(ButtonElement.Type.BUTTON)
+                .build()};
+        ButtonComponent VertragAnsehenButtonComponent = ButtonComponent
+                .builder("VertragAnsehenButtonComponent")
+                .buttonElements(EventVertragAnsehenButtonElement)
+                .buttonSize(new Dimension(200,40))
+                .position(ButtonComponent.Position.NORTH)
+                .build();
+        VertragAnsehenButtonComponent.addObserver(this);
+        gblExternBeauftragte.setConstraints(VertragAnsehenButtonComponent, gbcExternBeauftragte);
+        jp.add(VertragAnsehenButtonComponent);
 
     }
 
@@ -237,8 +265,26 @@ public class GUIexternBeauftragter extends GUIComponent implements IGUIEventList
     @Override
     public void processGUIEvent(GUIEvent ge) {
         if (ge.getCmd().equals(ButtonComponent.Commands.BUTTON_PRESSED)) {
-            if (((ButtonElement) ge.getData()).getID().equals("EventVertragHinzufuegenButtonElement")) {
+            if (((ButtonElement) ge.getData()).getID().equals("VertragHinzufuegenButtonElement")) {
+                FileFilter filter = new FileNameExtensionFilter("PDF",
+                        "pdf");
 
+                JFileChooser fc = new JFileChooser();
+                fc.addChoosableFileFilter(filter);
+                int returnVal = fc.showOpenDialog(this);
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    //This is where a real application would open the file.
+                    pdf = new PDF(file.getPath());
+                }
+            }
+            if (((ButtonElement) ge.getData()).getID().equals("VertragAnsehenButtonElement")) {
+                try {
+                    Desktop.getDesktop().open(new File(pdf.getPfad()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

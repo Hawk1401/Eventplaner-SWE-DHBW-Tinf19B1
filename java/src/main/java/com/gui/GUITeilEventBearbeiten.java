@@ -89,6 +89,9 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
     private ButtonComponent HilfsmittelHinzufuegenButtonComponent;
     private ButtonComponent HilfsmittelEntfernenButtonComponent;
 
+
+    private String startDateTemp = null;
+    private String endDateTemp = null;
     private Mitarbeiter selectedMitarbeiter;
     IDepictable[] elemsMitarbeiter;
     IDepictable[] elemsHilfsmittel;
@@ -114,8 +117,16 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         ArrayList<Mitarbeiter> montagePersonal = teilevent.getMontagePersonal();
         Mitarbeiter gruppenleiterBeschaffung = teilevent.getGruppenleiterBeschaffung();
         ArrayList<Mitarbeiter> beschaffungsPersonal = teilevent.getBeschaffungsPersonal();
-        ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl = teilevent.getHilfsmittel();
-        Hauptevent hauptevent = teilevent.getHauptevent();
+        ArrayList<Object[]> hilfsmittelMitAnzahl = teilevent.getHilfsmittel();
+
+        ArrayList<Hauptevent> events = Eventverwaltung.getInstance().getListeHauptevent();
+
+        Hauptevent hauptevent = events.get(0);
+        for (int i = 0; i < events.size(); i++) {
+            if(events.get(i).getBezeichnung() == teilevent.getHauptevent()){
+                hauptevent = events.get(i);
+            }
+        }
 
 
 
@@ -414,9 +425,9 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         gbcLeftSide.gridheight = 1;
 
         int count = 0;
-        for (Pair<Hilfsmittel, Integer> Hilfsmittel:
+        for (Object[] Hilfsmittel:
         _teilevent.getHilfsmittel()) {
-            count += Hilfsmittel.getValue1();
+            count += (int)Hilfsmittel[1];
         }
 
         textFieldHilfsmittelAnzahl = TextComponent.builder("textFieldHilfsmittelAnzahl").initialText(Integer.toString(count)).build();
@@ -428,12 +439,12 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         gbcLeftSide.gridwidth = 2;
         gbcLeftSide.gridheight = 1;
         tableHilfsmittel = SimpleTableComponent.builder("tableHilfsmittel").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"Hilfsmittel"}).build();
-        ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelTeilevent = _teilevent.getHilfsmittel();
+        ArrayList<Object[]> hilfsmittelTeilevent = _teilevent.getHilfsmittel();
 
         elemsHilfsmittel = new IDepictable[hilfsmittelTeilevent.size()];
         for (int i = 0; i < elemsHilfsmittel.length ; i++) {
-           Pair<Hilfsmittel, Integer> hilfsmittelAnzahlString = hilfsmittelTeilevent.get(i);
-           elemsHilfsmittel[i] = new tableClassHilfsmittel(hilfsmittelAnzahlString.getValue0().getBezeichnung(), hilfsmittelAnzahlString.getValue1());
+            Object[] hilfsmittelAnzahlString = hilfsmittelTeilevent.get(i);
+           elemsHilfsmittel[i] = new tableClassHilfsmittel(((Hilfsmittel)hilfsmittelAnzahlString[0]).getBezeichnung(), (int)hilfsmittelAnzahlString[1]);
         }
 
         tableMitarbeiter.setData(elemsHilfsmittel, new String[]{"Bezeichnung", "Anzahl"});
@@ -681,9 +692,11 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
     public void SetTimeSeletet(Timestamp timestamp, String id) {
         String s = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(timestamp);
         if(id.equals("Start")){
+            startDateTemp = s;
             StartDatumButtonElement[0].setButtonText(s);
         }
         if(id.equals("End")){
+            endDateTemp = s;
             EndDatumButtonElement[0].setButtonText(s);
         }
     }
@@ -737,7 +750,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 ArrayList<Hilfsmittel> hilfsmittel = Eventverwaltung.getInstance().getListeHilfsmittel();
                 for(int i = 0; i < hilfsmittel.size(); i++){
                     if(name == hilfsmittel.get(i).getBezeichnung()){
-                        _teilevent.getHilfsmittel().add(new Pair<Hilfsmittel, Integer>(hilfsmittel.get(i), anzahl));
+                        _teilevent.getHilfsmittel().add(new Object[]{hilfsmittel.get(i), anzahl});
                     }
                 }
                 updateTableHilfsmittel();
@@ -754,34 +767,78 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
                 updateTableHilfsmittel();
             }
             if (((ButtonElement) ge.getData()).getID().equals("SubmitButtonElement")) {
-                String externBeauffirmenname = gUIexternBeauftragter.textFieldFirmenname.getText();
-                String externBeaufangebot = gUIexternBeauftragter.textFieldAngebot.getText();
-                String externBeaufAnzahlPersonen = gUIexternBeauftragter.textFieldAnzahlPersonen.getText();
-                String externBeaufBeschreibung = gUIexternBeauftragter.textFieldBeschreibung.getText();
-                String externBeaufVorname = gUIexternBeauftragter.textFieldVorname.getText();
-                String externBeaufNachname = gUIexternBeauftragter.textFieldNachname.getText();
-                String externBeaufEmail = gUIexternBeauftragter.textFieldEmail.getText();
-                int externBeaufTelefonnummer = Integer.parseInt(gUIexternBeauftragter.textFieldTelefonnummer.getText());
-                String externBeaufAdresse = gUIexternBeauftragter.textFieldAdresse.getText();
+
+                try{
+                    String externBeauffirmenname = gUIexternBeauftragter.textFieldFirmenname.getText();
+                    String externBeaufangebot = gUIexternBeauftragter.textFieldAngebot.getText();
+                    String externBeaufAnzahlPersonen = gUIexternBeauftragter.textFieldAnzahlPersonen.getText();
+                    String externBeaufBeschreibung = gUIexternBeauftragter.textFieldBeschreibung.getText();
+                    String externBeaufVorname = gUIexternBeauftragter.textFieldVorname.getText();
+                    String externBeaufNachname = gUIexternBeauftragter.textFieldNachname.getText();
+                    String externBeaufEmail = gUIexternBeauftragter.textFieldEmail.getText();
+                    int externBeaufTelefonnummer =  tryParseInt(gUIexternBeauftragter.textFieldTelefonnummer.getText(), 112);
+                    String externBeaufAdresse = gUIexternBeauftragter.textFieldAdresse.getText();
+
+                    _teilevent.setExternBeauftragter(new ExternBeauftragter(externBeauffirmenname, externBeaufangebot, externBeaufAnzahlPersonen,
+                            externBeaufBeschreibung, externBeaufVorname, externBeaufNachname,
+                            externBeaufEmail, externBeaufTelefonnummer, externBeaufAdresse));
+                    _teilevent.setBezeichnung(textFieldTeileventName.getText());
+                }catch (Exception e){
+
+                }
+
+
+                if(startDateTemp == null){
+                    _teilevent.setStart_Termin(new Datum(StartDatumButtonElement[0].getButtonText()));
+
+                }else{
+                    _teilevent.setStart_Termin(new Datum(startDateTemp));
+                }
+                if(endDateTemp == null){
+                    _teilevent.setEnd_Termin(new Datum(StartDatumButtonElement[0].getButtonText()));
+
+                }else{
+                    _teilevent.setEnd_Termin(new Datum(endDateTemp));
+                }
+
                 _teilevent.setBezeichnung(textFieldTeileventName.getText());
-                _teilevent.setStart_Termin(new Datum(StartDatumButtonElement[0].getButtonText()));
-                _teilevent.setEnd_Termin(new Datum(EndDatumButtonElement[0].getButtonText()));
                 _teilevent.setBeschreibung(extendetTextFieldBeschreibung.getText());
                 _teilevent.setKosten(Double.parseDouble(textFieldKosten.getText()));
                 _teilevent.setTeilnehmeranzahl(Integer.parseInt(textFieldTeilnehmerzahl.getText()));
-                _teilevent.setExternBeauftragter(new ExternBeauftragter(externBeauffirmenname, externBeaufangebot, externBeaufAnzahlPersonen,
-                            externBeaufBeschreibung, externBeaufVorname, externBeaufNachname,
-                            externBeaufEmail, externBeaufTelefonnummer, externBeaufAdresse));
+
                 _teilevent.setStandort(new Anschrift(textFieldStandort.getText()));
                 setMontageleiterObjectToTeilevent();
                 setGruppenleiterObjectToTeilevent();
                 setHaupteventObjectToTeilevent();
                 setStatusObjectToTeilevent();
 
+
+                ArrayList<Hauptevent> hauptevents =  Eventverwaltung.getInstance().getListeHauptevent();
+
+                String haupteventname = ZugeoerigeHaupteventComboboxElement.getValueAsString();
+
+                for (int i = 0; i < hauptevents.size(); i++) {
+                    if(hauptevents.get(i).getListeTeilevent().contains(_teilevent)){
+                        hauptevents.get(i).getListeTeilevent().remove(_teilevent);
+                    }
+
+                    if(hauptevents.get(i).getBezeichnung() == haupteventname){
+                        hauptevents.get(i).getListeTeilevent().add(_teilevent);
+                    }
+                }
+                _frame.dispose();
           }
             if (((ButtonElement) ge.getData()).getID().equals("CancleButtonElement")) {
                 _frame.dispose();
             }
+        }
+    }
+
+    public int tryParseInt(String value, int defaultVal) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return defaultVal;
         }
     }
 
@@ -790,7 +847,7 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
         ArrayList<Hauptevent> hauptevents = Eventverwaltung.getInstance().getListeHauptevent();
         for (int i = 0; i < hauptevents.size(); i++) {
             if(name == hauptevents.get(i).getBezeichnung()){
-                _teilevent.setHauptevent(hauptevents.get(i));
+                _teilevent.setHauptevent(hauptevents.get(i).getBezeichnung());
             }
         }
     }
@@ -833,12 +890,12 @@ public class GUITeilEventBearbeiten extends GUIComponent implements GUIDateTimeS
 
     private void updateTableHilfsmittel(){
         // GUI Hilfsmittel liste aktualisieren
-        ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelTeilevent = _teilevent.getHilfsmittel();
+        ArrayList<Object[]> hilfsmittelTeilevent = _teilevent.getHilfsmittel();
 
         elemsHilfsmittel = new IDepictable[hilfsmittelTeilevent.size()];
         for (int i = 0; i < elemsHilfsmittel.length ; i++) {
-           Pair<Hilfsmittel, Integer> hilfsmittelAnzahlString = hilfsmittelTeilevent.get(i);
-           elemsHilfsmittel[i] = new tableClassHilfsmittel(hilfsmittelAnzahlString.getValue0().getBezeichnung(), hilfsmittelAnzahlString.getValue1());
+            Object[] hilfsmittelAnzahlString = hilfsmittelTeilevent.get(i);
+           elemsHilfsmittel[i] = new tableClassHilfsmittel(((Hilfsmittel)hilfsmittelAnzahlString[0]).getBezeichnung(), (int)hilfsmittelAnzahlString[1]);
         }
 
         tableHilfsmittel.setData(elemsHilfsmittel, new String[]{"Bezeichnung", "Anzahl"});

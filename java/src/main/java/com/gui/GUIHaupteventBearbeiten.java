@@ -446,6 +446,7 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
                     GUITeileventOverview list = new GUITeileventOverview(hauptevent.getListeTeilevent());
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("CancleButtonElement")) {
+                    GUIEventlist.Instance.update();
                     this.frame.dispose();
                 }
                 if (((ButtonElement) ge.getData()).getID().equals("SubmitButtonElement")) {
@@ -491,6 +492,8 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
                     if(!Eventverwaltung.getInstance().getListeHauptevent().contains(this.hauptevent)){
                         Eventverwaltung.getInstance().getListeHauptevent().add(hauptevent);
                     }
+
+                    GUIEventlist.Instance.update();
                     this.frame.dispose();
                 }
             }catch (Exception e){
@@ -517,7 +520,7 @@ public class GUIHaupteventBearbeiten extends GUIComponent implements GUIDateTime
         }
         if(id.equals("End")){
             endDateTemp = s;
-            DatumButtonElement[0].setButtonText(s);
+            DatumButtonElement[1].setButtonText(s);
         }
     }
 }

@@ -22,6 +22,7 @@ public class GUIEventlist extends GUIComponent implements IGUIEventListener {
     SimpleTableComponent table;
     ArrayList<Hauptevent> listHauptevent;
 
+    public static GUIEventlist Instance;
 
     public GUIEventlist(IGUIEventListener obs) {
         listHauptevent = Eventverwaltung.getInstance().getListeHauptevent();
@@ -31,18 +32,27 @@ public class GUIEventlist extends GUIComponent implements IGUIEventListener {
             Hauptevent haupt = listHauptevent.get(i);
             elems[i] = new tableclass(haupt.getBezeichnung(), haupt.getStart_Termin().getDatum(), haupt.getEnd_Termin().getDatum(),haupt.getStatus().toString(), Integer.toString(haupt.getTeilnehmeranzahl()));
         }
-        /*
-        IDepictable[] elems = new IDepictable[]{
 
-                new tableclass("Geburtags", "14.01.2022", "15.01.2022", "In planung", "69"),
-                new tableclass("Geburtags", "14.01.2023", "15.01.2023", "In planung", "420")
-        };*/
 
 
         table = SimpleTableComponent.builder("tableEvents").selectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION ).columnNames(new String[]{"name","StartDatum","EndDatum","Status","TeilnehmerAnzahl"}).build();
 
         table.setData(elems, new String[]{"name","StartDatum","EndDatum","Status","TeilnehmerAnzahl"});
         table.addObserver(obs);
+
+        Instance = this;
+    }
+
+    public void update(){
+        listHauptevent = Eventverwaltung.getInstance().getListeHauptevent();
+
+        IDepictable[] elems = new IDepictable[listHauptevent.size()];
+        for (int i = 0; i < elems.length; i++) {
+            Hauptevent haupt = listHauptevent.get(i);
+            elems[i] = new tableclass(haupt.getBezeichnung(), haupt.getStart_Termin().getDatum(), haupt.getEnd_Termin().getDatum(),haupt.getStatus().toString(), Integer.toString(haupt.getTeilnehmeranzahl()));
+        }
+
+        table.setData(elems, new String[]{"name","StartDatum","EndDatum","Status","TeilnehmerAnzahl"});
     }
 
     public SimpleTableComponent getTable(){return table;}

@@ -19,8 +19,8 @@ public class Teilevent extends Event{
     ArrayList<Mitarbeiter> montagePersonal = new ArrayList<>();
     Mitarbeiter gruppenleiterBeschaffung;
     ArrayList<Mitarbeiter> beschaffungsPersonal = new ArrayList<>();
-    ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl = new ArrayList<Pair<Hilfsmittel, Integer>>();
-    Hauptevent hauptevent;
+    ArrayList<Object[]> hilfsmittelMitAnzahl = new ArrayList<Object[]>() ;
+    String hauptevent;
 
     public Teilevent(String bezeichnung,
                      Datum start_Termin,
@@ -51,8 +51,8 @@ public class Teilevent extends Event{
         this.montagePersonal = montagePersonal;
         this.gruppenleiterBeschaffung = gruppenleiterBeschaffung;
         this.beschaffungsPersonal = beschaffungsPersonal;
-        this.hilfsmittelMitAnzahl = hilfsmittelMitAnzahl;
-        this.hauptevent = hauptevent;
+        setHilfsmittel(hilfsmittelMitAnzahl, 0);
+        this.hauptevent = hauptevent.getBezeichnung();
     }
 
     public Teilevent() {
@@ -68,7 +68,7 @@ public class Teilevent extends Event{
         this.gruppenleiterBeschaffung = new Mitarbeiter("");
         this.beschaffungsPersonal = new ArrayList<>();
         this.hilfsmittelMitAnzahl = new ArrayList<>();
-        this.hauptevent = new Hauptevent();
+        this.hauptevent = "";
     }
 
     public Mitarbeiter getMontageLeiter() {
@@ -103,12 +103,18 @@ public class Teilevent extends Event{
         this.beschaffungsPersonal = beschaffungsPersonal;
     }
 
-    public ArrayList<Pair<Hilfsmittel, Integer>> getHilfsmittel() {
+    public ArrayList<Object[]> getHilfsmittel() {
         return hilfsmittelMitAnzahl;
     }
 
-    public void setHilfsmittel(ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl) {
+    public void setHilfsmittel(ArrayList<Object[]> hilfsmittelMitAnzahl) {
         this.hilfsmittelMitAnzahl = hilfsmittelMitAnzahl;
+    }
+
+    public void setHilfsmittel(ArrayList<Pair<Hilfsmittel, Integer>> hilfsmittelMitAnzahl, int a) {
+        for (int i = 0; i < hilfsmittelMitAnzahl.size(); i++) {
+            this.hilfsmittelMitAnzahl.add(new Object[]{hilfsmittelMitAnzahl.get(i).getValue0(), hilfsmittelMitAnzahl.get(i).getValue1()});
+        }
     }
 
     public ExternBeauftragter getExternBeauftragter() {
@@ -135,11 +141,11 @@ public class Teilevent extends Event{
         this.angebotslist = angebotslist;
     }
 
-    public Hauptevent getHauptevent(){
+    public String getHauptevent(){
         return this.hauptevent;
     }
 
-    public void setHauptevent(Hauptevent hauptevent){
+    public void setHauptevent(String hauptevent){
         this.hauptevent = hauptevent;
     }
 }

@@ -246,12 +246,19 @@ public class GUIHauptevent extends GUIComponent implements IGUIEventListener {
             }
             if (((ButtonElement) ge.getData()).getID().equals("EventKundeButtonElement")) {
                 JFrame frame = new JFrame();
-                GUIKunde kunde = new GUIKunde(frame, this.hauptevent.getVertrag().getKunde());
+                if(this.hauptevent.getVertrag() == null){
+                    JOptionPane.showMessageDialog(frame,
+                            "Keine Kunden Infos hinterlegt");
+                }else{
+                    GUIKunde kunde = new GUIKunde(frame, this.hauptevent.getVertrag().getKunde());
+                    frame.add(kunde.getOverviewPanel());
+                    frame.pack();
+                    frame.setMinimumSize(new Dimension(800,    600));
+                    frame.setVisible(true);
 
-                frame.add(kunde.getOverviewPanel());
-                frame.pack();
-                frame.setMinimumSize(new Dimension(800,    600));
-                frame.setVisible(true);
+                }
+
+
             }
         }
     }

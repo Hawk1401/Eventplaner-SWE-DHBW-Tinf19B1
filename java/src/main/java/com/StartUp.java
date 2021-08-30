@@ -26,19 +26,21 @@ public class StartUp {
 
         ArrayList<Teilevent> testTeilevents = new ArrayList<Teilevent>();
         ArrayList<Mitarbeiter> testMitarbeiter = new ArrayList<Mitarbeiter>();
-        testMitarbeiter.add(new Mitarbeiter("Hans", "König", "hans.koenig@web.de", 495826984825L, "hiner den lienden 24", 1, Rolle.MITARBEITER, new ArrayList<>(), new Datum(), "Berlin"));
-        testMitarbeiter.add(new Mitarbeiter("Hans1", "König1", "hans1.koenig@web.de", 495826984525L, "hiner den lienden 25", 4, Rolle.BESCHAFFUNGSPERSONAL, new ArrayList<>(), new Datum(), "Berlin"));
-        testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "Berlin"));
-        testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.MONTAGELEITER, new ArrayList<>(), new Datum(), "Berlin"));
-        testMitarbeiter.add(new Mitarbeiter("Hans2", "König2", "hans2.koenig@web.de", 4953826984825L, "hiner den lienden 26", 2, Rolle.ORGANISATOR, new ArrayList<>(), new Datum(), "Berlin"));
-
-
         ArrayList<Mitarbeiter> testMitarbeiter2 = new ArrayList<Mitarbeiter>();
-        testMitarbeiter2.add(new Mitarbeiter("Farbi", "König", "Farbi.koenig@web.de", 495826584825L, "hiner den lienden 4", 10, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "köln"));
-        testMitarbeiter2.add(new Mitarbeiter("Farbi1", "König1", "Farbi1.koenig@web.de", 495826984525L, "hiner den lienden 5", 40, Rolle.MITARBEITER, new ArrayList<>(), new Datum(), "Ulm"));
-        testMitarbeiter2.add(new Mitarbeiter("Farbi2", "König2", "Farbi2.koenig@web.de", 4953823984825L, "hiner den lienden 6", 20, Rolle.ADMINISTRATOR, new ArrayList<>(), new Datum(), "mainz"));
 
+        testMitarbeiter.add(new Mitarbeiter("Emil", "Peeters", "Emil.Peeters@web.de", 4958269832825L, "hiner den lienden 1", 1, Rolle.MITARBEITER, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter.add(new Mitarbeiter("Anton", "Janssens", "Anton.Janssens@web.de", 495826984525L, "hiner den lienden 2", 2, Rolle.BESCHAFFUNGSPERSONAL, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter.add(new Mitarbeiter("Karl", "Maes", "Karl.Maes@web.de", 4953836984835L, "hiner den lienden 3", 3, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter.add(new Mitarbeiter("Paul", "Jacobs", "Paul.Jacobs@web.de", 4953826384825L, "hiner den lienden 4", 4, Rolle.MONTAGELEITER, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter.add(new Mitarbeiter("Theo", "Mertens", "Theo.Mertens@web.de", 4953826985825L, "hiner den lienden 5", 5, Rolle.ORGANISATOR, new ArrayList<>(), new Datum(), "Berlin"));
+        testMitarbeiter2.add(new Mitarbeiter("Felix", "Willems", "Felix.Willems@web.de", 495826584825L, "hiner den lienden 6", 6, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "köln"));
+        testMitarbeiter2.add(new Mitarbeiter("Oskar", "Claes", "Oskar.Claes@web.de", 495826924525L, "hiner den lienden 7", 7, Rolle.MITARBEITER, new ArrayList<>(), new Datum(), "Ulm"));
+        testMitarbeiter2.add(new Mitarbeiter("Noah", "Goossens", "Noah.Goossens@web.de", 4953821984825L, "hiner den lienden 8", 8, Rolle.ADMINISTRATOR, new ArrayList<>(), new Datum(), "mainz"));
+        testMitarbeiter2.add(new Mitarbeiter("Ben", "Wouters", "Ben.Wouters@web.de", 495486584825L, "hiner den lienden 9", 9, Rolle.GRUPPENLEITER, new ArrayList<>(), new Datum(), "köln"));
+        testMitarbeiter2.add(new Mitarbeiter("Elias", "Jacobs", "Elias.Jacobs@web.de", 495826894525L, "hiner den lienden 10", 10, Rolle.BESCHAFFUNGSPERSONAL, new ArrayList<>(), new Datum(), "Ulm"));
+        testMitarbeiter2.add(new Mitarbeiter("Arthur", "Janssens", "Arthur.Janssens@web.de", 4958473984825L, "hiner den lienden 11", 11, Rolle.ADMINISTRATOR, new ArrayList<>(), new Datum(), "mainz"));
 
+        /*
         testTeilevents.add(new Teilevent("Dast ist ein Teilevent", new Datum("13.04.1990 12:33"), new Datum("13.04.1991 12:33"),
             "Das ist die beschreibung eins...", Status.ERSTELLT, 500.0, 60, new ArrayList<Bild>(), new ExternBeauftragter("externBeauftragter1"),
             new Anschrift("Das ist eine Adresse"), new ArrayList<Angebot>(), testMitarbeiter2.get(0),
@@ -67,6 +69,7 @@ public class StartUp {
             new Datum("13.04.1991 23:33"));
 
 
+
         Hauptevent testHauptevent2 = new Hauptevent("Hauptevent Name die zweite",
                 new Mitarbeiter("John", "Smith", "info@Smith.com",
                         012234, "Soll die Adresse sein ist aber noch ein String",
@@ -84,18 +87,34 @@ public class StartUp {
 
         Eventverwaltung.getInstance().getListeHauptevent().add(testHauptevent);
         Eventverwaltung.getInstance().getListeHauptevent().add(testHauptevent2);
-        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Super Tolle Lichter, aber Schwaz licht also achtung"));
+        */
+
+
+
+
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Stuhl"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Tisch"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Lautsprecher"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Mischpult"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Bühne"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("Leimwand"));
+        Eventverwaltung.getInstance().getListeHilfsmittel().add(new Hilfsmittel("verlängerungskabel"));
+
+
         Eventverwaltung.getInstance().getListeMitarbeiter().addAll(testMitarbeiter);
         Eventverwaltung.getInstance().getListeMitarbeiter().addAll(testMitarbeiter2);
+
         Eventverwaltung.getInstance().getListeKunde().add(new Kunde("Otto", "maier","otto.maier@web.de", 123342, "Dorfstraße 69 25567 Muensterdorf ", 4500, new Vertrag()));
+
+
+
+
 
         JSONImport importler = new JSONImport();
         Quartet<ArrayList<Hauptevent>, ArrayList<Mitarbeiter>, ArrayList<Hilfsmittel>, ArrayList<Kunde>> data = importler.importAll();
 
         Eventverwaltung.getInstance().setListeHauptevent(data.getValue0());
-        Eventverwaltung.getInstance().setListeMitarbeiter(data.getValue1());
-        Eventverwaltung.getInstance().setListeHilfsmittel(data.getValue2());
-        Eventverwaltung.getInstance().setListeKunde(data.getValue3());
+        //Eventverwaltung.getInstance().setListeMitarbeiter(data.getValue1());
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             GUIController controller =  getGuiController();
