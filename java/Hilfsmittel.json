@@ -1,0 +1,36 @@
+[ {
+  "bezeichnung" : "Stuhl",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "Tisch",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "Lautsprecher",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "Mischpult",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "Bühne",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "Leimwand",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+}, {
+  "bezeichnung" : "verlängerungskabel",
+  "gesamtAnzahl" : 0,
+  "aktuelleAnzahl" : 0,
+  "beschreibung" : null
+} ]

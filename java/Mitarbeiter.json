@@ -1,0 +1,375 @@
+[ {
+  "kontaktdaten" : {
+    "vorname" : "Emil",
+    "nachname" : "Peeters",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Emil.Peeters@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4958269832825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 1"
+    }
+  },
+  "rolle" : "MITARBEITER",
+  "personalnummer" : "1",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186753,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Berlin",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Anton",
+    "nachname" : "Janssens",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Anton.Janssens@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 495826984525
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 2"
+    }
+  },
+  "rolle" : "BESCHAFFUNGSPERSONAL",
+  "personalnummer" : "2",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Berlin",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Karl",
+    "nachname" : "Maes",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Karl.Maes@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4953836984835
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 3"
+    }
+  },
+  "rolle" : "GRUPPENLEITER",
+  "personalnummer" : "3",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Berlin",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Paul",
+    "nachname" : "Jacobs",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Paul.Jacobs@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4953826384825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 4"
+    }
+  },
+  "rolle" : "MONTAGELEITER",
+  "personalnummer" : "4",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Berlin",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Theo",
+    "nachname" : "Mertens",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Theo.Mertens@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4953826985825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 5"
+    }
+  },
+  "rolle" : "ORGANISATOR",
+  "personalnummer" : "5",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Berlin",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Felix",
+    "nachname" : "Willems",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Felix.Willems@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 495826584825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 6"
+    }
+  },
+  "rolle" : "GRUPPENLEITER",
+  "personalnummer" : "6",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "köln",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Oskar",
+    "nachname" : "Claes",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Oskar.Claes@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 495826924525
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 7"
+    }
+  },
+  "rolle" : "MITARBEITER",
+  "personalnummer" : "7",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Ulm",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Noah",
+    "nachname" : "Goossens",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Noah.Goossens@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4953821984825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 8"
+    }
+  },
+  "rolle" : "ADMINISTRATOR",
+  "personalnummer" : "8",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "mainz",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Ben",
+    "nachname" : "Wouters",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Ben.Wouters@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 495486584825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 9"
+    }
+  },
+  "rolle" : "GRUPPENLEITER",
+  "personalnummer" : "9",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "köln",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Elias",
+    "nachname" : "Jacobs",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Elias.Jacobs@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 495826894525
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 10"
+    }
+  },
+  "rolle" : "BESCHAFFUNGSPERSONAL",
+  "personalnummer" : "10",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "Ulm",
+  "tempName" : null
+}, {
+  "kontaktdaten" : {
+    "vorname" : "Arthur",
+    "nachname" : "Janssens",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "Arthur.Janssens@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 4958473984825
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "hiner den lienden 11"
+    }
+  },
+  "rolle" : "ADMINISTRATOR",
+  "personalnummer" : "11",
+  "aufgabenfeldList" : [ ],
+  "geburtsdatum" : {
+    "timestamp" : 1630340186754,
+    "datum" : "30.08.2021 18:16"
+  },
+  "geburtsort" : "mainz",
+  "tempName" : null
+} ]

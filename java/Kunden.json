@@ -1,0 +1,36 @@
+[ {
+  "kontaktdaten" : {
+    "vorname" : "Otto",
+    "nachname" : "maier",
+    "email" : {
+      "adresse" : null,
+      "host" : null,
+      "gesamteEmail" : "otto.maier@web.de"
+    },
+    "telefonnummer" : {
+      "leandervorwahl" : 0,
+      "vorwahl" : 0,
+      "nummer" : 0,
+      "gesamteNummer" : 123342
+    },
+    "anschrift" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : "Dorfstraße 69 25567 Muensterdorf "
+    }
+  },
+  "budget" : 4500.0,
+  "vertrag" : {
+    "kosten" : 0.0,
+    "beschreibung" : null,
+    "bezeichnung" : null,
+    "datum" : null,
+    "vertragsnummer" : 0,
+    "kunde" : null,
+    "pfd" : null
+  }
+} ]

@@ -1,0 +1,236 @@
+[ {
+  "bezeichnung" : "fds",
+  "start_Termin" : {
+    "timestamp" : 1630340100000,
+    "datum" : "30.08.2021 18:15"
+  },
+  "end_Termin" : {
+    "timestamp" : 1630340100000,
+    "datum" : "30.08.2021 18:15"
+  },
+  "beschreibung" : "asda asd assda das d",
+  "status" : "ERSTELLT",
+  "kosten" : 123.0,
+  "weahrung" : null,
+  "teilnehmeranzahl" : 23,
+  "bilder" : [ ],
+  "organisator" : {
+    "kontaktdaten" : {
+      "vorname" : "Theo",
+      "nachname" : "Mertens",
+      "email" : {
+        "adresse" : null,
+        "host" : null,
+        "gesamteEmail" : "Theo.Mertens@web.de"
+      },
+      "telefonnummer" : {
+        "leandervorwahl" : 0,
+        "vorwahl" : 0,
+        "nummer" : 0,
+        "gesamteNummer" : 4953826985825
+      },
+      "anschrift" : {
+        "strasse" : null,
+        "hausnummer" : 0,
+        "zusatz" : null,
+        "postleitzahl" : 0,
+        "ort" : null,
+        "land" : null,
+        "gesamteAdresse" : "hiner den lienden 5"
+      }
+    },
+    "rolle" : "ORGANISATOR",
+    "personalnummer" : "5",
+    "aufgabenfeldList" : [ ],
+    "geburtsdatum" : {
+      "timestamp" : 1630340116079,
+      "datum" : "30.08.2021 18:15"
+    },
+    "geburtsort" : "Berlin",
+    "tempName" : null
+  },
+  "vertrag" : null,
+  "listeTeilevent" : [ {
+    "bezeichnung" : "fds h sdf",
+    "start_Termin" : {
+      "timestamp" : 1630340100000,
+      "datum" : "30.08.2021 18:15"
+    },
+    "end_Termin" : {
+      "timestamp" : 1630340100000,
+      "datum" : "30.08.2021 18:15"
+    },
+    "beschreibung" : " w asd\n Some text\n",
+    "status" : "ERSTELLT",
+    "kosten" : 23.0,
+    "weahrung" : null,
+    "teilnehmeranzahl" : 12,
+    "bilder" : [ ],
+    "externBeauftragter" : {
+      "vertrag" : null,
+      "kontaktdaten" : null,
+      "firmenname" : null,
+      "beschreibung" : null,
+      "angebot" : null,
+      "anzahlPersonal" : 0,
+      "test" : ""
+    },
+    "standort" : {
+      "strasse" : null,
+      "hausnummer" : 0,
+      "zusatz" : null,
+      "postleitzahl" : 0,
+      "ort" : null,
+      "land" : null,
+      "gesamteAdresse" : ""
+    },
+    "angebotslist" : [ ],
+    "montageLeiter" : {
+      "kontaktdaten" : {
+        "vorname" : "Paul",
+        "nachname" : "Jacobs",
+        "email" : {
+          "adresse" : null,
+          "host" : null,
+          "gesamteEmail" : "Paul.Jacobs@web.de"
+        },
+        "telefonnummer" : {
+          "leandervorwahl" : 0,
+          "vorwahl" : 0,
+          "nummer" : 0,
+          "gesamteNummer" : 4953826384825
+        },
+        "anschrift" : {
+          "strasse" : null,
+          "hausnummer" : 0,
+          "zusatz" : null,
+          "postleitzahl" : 0,
+          "ort" : null,
+          "land" : null,
+          "gesamteAdresse" : "hiner den lienden 4"
+        }
+      },
+      "rolle" : "MONTAGELEITER",
+      "personalnummer" : "4",
+      "aufgabenfeldList" : [ ],
+      "geburtsdatum" : {
+        "timestamp" : 1630340116079,
+        "datum" : "30.08.2021 18:15"
+      },
+      "geburtsort" : "Berlin",
+      "tempName" : null
+    },
+    "montagePersonal" : [ {
+      "kontaktdaten" : {
+        "vorname" : "Emil",
+        "nachname" : "Peeters",
+        "email" : {
+          "adresse" : null,
+          "host" : null,
+          "gesamteEmail" : "Emil.Peeters@web.de"
+        },
+        "telefonnummer" : {
+          "leandervorwahl" : 0,
+          "vorwahl" : 0,
+          "nummer" : 0,
+          "gesamteNummer" : 4958269832825
+        },
+        "anschrift" : {
+          "strasse" : null,
+          "hausnummer" : 0,
+          "zusatz" : null,
+          "postleitzahl" : 0,
+          "ort" : null,
+          "land" : null,
+          "gesamteAdresse" : "hiner den lienden 1"
+        }
+      },
+      "rolle" : "MITARBEITER",
+      "personalnummer" : "1",
+      "aufgabenfeldList" : [ ],
+      "geburtsdatum" : {
+        "timestamp" : 1630340116077,
+        "datum" : "30.08.2021 18:15"
+      },
+      "geburtsort" : "Berlin",
+      "tempName" : null
+    }, {
+      "kontaktdaten" : {
+        "vorname" : "Oskar",
+        "nachname" : "Claes",
+        "email" : {
+          "adresse" : null,
+          "host" : null,
+          "gesamteEmail" : "Oskar.Claes@web.de"
+        },
+        "telefonnummer" : {
+          "leandervorwahl" : 0,
+          "vorwahl" : 0,
+          "nummer" : 0,
+          "gesamteNummer" : 495826924525
+        },
+        "anschrift" : {
+          "strasse" : null,
+          "hausnummer" : 0,
+          "zusatz" : null,
+          "postleitzahl" : 0,
+          "ort" : null,
+          "land" : null,
+          "gesamteAdresse" : "hiner den lienden 7"
+        }
+      },
+      "rolle" : "MITARBEITER",
+      "personalnummer" : "7",
+      "aufgabenfeldList" : [ ],
+      "geburtsdatum" : {
+        "timestamp" : 1630340116079,
+        "datum" : "30.08.2021 18:15"
+      },
+      "geburtsort" : "Ulm",
+      "tempName" : null
+    } ],
+    "gruppenleiterBeschaffung" : {
+      "kontaktdaten" : {
+        "vorname" : "Karl",
+        "nachname" : "Maes",
+        "email" : {
+          "adresse" : null,
+          "host" : null,
+          "gesamteEmail" : "Karl.Maes@web.de"
+        },
+        "telefonnummer" : {
+          "leandervorwahl" : 0,
+          "vorwahl" : 0,
+          "nummer" : 0,
+          "gesamteNummer" : 4953836984835
+        },
+        "anschrift" : {
+          "strasse" : null,
+          "hausnummer" : 0,
+          "zusatz" : null,
+          "postleitzahl" : 0,
+          "ort" : null,
+          "land" : null,
+          "gesamteAdresse" : "hiner den lienden 3"
+        }
+      },
+      "rolle" : "GRUPPENLEITER",
+      "personalnummer" : "3",
+      "aufgabenfeldList" : [ ],
+      "geburtsdatum" : {
+        "timestamp" : 1630340116079,
+        "datum" : "30.08.2021 18:15"
+      },
+      "geburtsort" : "Berlin",
+      "tempName" : null
+    },
+    "beschaffungsPersonal" : [ ],
+    "hauptevent" : "fds",
+    "hilfsmittel" : [ [ {
+      "bezeichnung" : "Stuhl",
+      "gesamtAnzahl" : 0,
+      "aktuelleAnzahl" : 0,
+      "beschreibung" : null
+    }, 2 ] ]
+  } ]
+} ]
